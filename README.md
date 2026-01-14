@@ -2,9 +2,9 @@
 Een Full-Stack Website voor Bowling Center Brooklyn met een reserveringssysteem.
 
 # Main Issues
-- #15
+- [User Stories](https://github.com/Bambaclad1/bowlingcenter-brooklyn/issues/15)
 
 # Sub Issues
-- #16
-- #17
-- #18
+- [Eigenaar User Stories](https://github.com/Bambaclad1/bowlingcenter-brooklyn/issues/16)
+- [Klant User Stories](https://github.com/Bambaclad1/bowlingcenter-brooklyn/issues/17)
+- [Medewerker User Stories](https://github.com/Bambaclad1/bowlingcenter-brooklyn/issues/18)
