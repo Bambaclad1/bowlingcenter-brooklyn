@@ -1,6 +1,9 @@
 # bowlingcenter-brooklyn
 Een Full-Stack Website voor Bowling Center Brooklyn met een reserveringssysteem.
 
+# Kanban Board
+* [Kanban Board](https://github.com/users/Bambaclad1/projects/1)
+
 # Main Issues
 - [User Stories](https://github.com/Bambaclad1/bowlingcenter-brooklyn/issues/15)
 
