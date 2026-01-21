@@ -20,5 +20,5 @@ bubble-java-sixth-piano
 
 # Privacy Ontwerpen
 hier moeten we aan voldoen
-[AVG Eisen](https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/de-avg-in-het-kort)
+[AVG Eisen](https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/avg-algemeen/de-avg-in-het-kort)  
 [OWASP Top 10](https://owasp.org/Top10/2025/)
