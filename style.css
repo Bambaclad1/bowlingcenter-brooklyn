@@ -1,0 +1,194 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+/* HEADER */
+.header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 18px 22px;
+    z-index: 30;
+}
+
+.menu-btn {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.menu-btn:hover {
+    transform: scale(1.15);
+    color: #ff2fdc;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 260px;
+    height: 100%;
+    background: rgba(20,20,40,0.96);
+    backdrop-filter: blur(12px);
+    z-index: 25;
+    transition: right 0.35s ease;
+}
+
+.mobile-menu::before {
+    content: "";
+    height: 70px;
+    background: linear-gradient(135deg, #ff2fdc, #6a0dad);
+    display: block;
+}
+
+.mobile-menu.open {
+    right: 0;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 90px 0 0;
+}
+
+.mobile-menu li {
+    margin: 25px 0;
+    text-align: center;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+    transition: color 0.25s, transform 0.25s;
+}
+
+.mobile-menu a:hover {
+    color: #ff2fdc;
+    transform: scale(1.05);
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.85)
+    );
+}
+
+/* HERO CONTENT */
+.hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    animation: fadeUp 1s ease forwards;
+}
+
+/* LOGO */
+.logo-circle {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(circle, #1a1a2e, #000);
+    align-items: center;
+    box-shadow:
+        0 0 25px rgba(255,47,220,0.6),
+        inset 0 0 20px rgba(255,255,255,0.1);
+}
+
+.logo-circle img {
+    width: 85%;
+}
+
+/* TITEL */
+.hero-content h1 {
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(255,47,220,0.6);
+}
+
+/* SUBTITEL */
+.hero-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    letter-spacing: 0.6px;
+}
+
+/* KNOP */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #ff2fdc, #e11d48);
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 25px rgba(255,47,220,0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 40px rgba(255,47,220,0.9);
+}
+
+/* ANIMATIE */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TABLET / DESKTOP */
+@media (min-width: 600px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .logo-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 16px 36px;
+    }
+}

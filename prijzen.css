@@ -1,0 +1,160 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0)
+    );
+}
+
+.logo-pfp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.menu-btn {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 260px;
+    height: 100%;
+    background: rgba(20,20,40,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 40;
+    transition: right 0.35s ease;
+}
+
+.mobile-menu::before {
+    content: "";
+    height: 70px;
+    background: linear-gradient(135deg, #ff2fdc, #6a0dad);
+    display: block;
+}
+
+.mobile-menu.open {
+    right: 0;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding-top: 90px;
+}
+
+.mobile-menu li {
+    margin: 25px 0;
+    text-align: center;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+/* HERO */
+.prijzen-hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.9)
+        ),
+        url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 120px 20px 40px;
+    text-align: center;
+    position: relative;
+}
+
+/* 🔥 BELANGRIJK: overlay blokkeert geen kliks */
+.prijzen-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* TITELS */
+.prijzen-title {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.prijzen-subtitle {
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+/* BLOKKEN */
+.prijs-blokken {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 220px;
+}
+
+.blok {
+    aspect-ratio: 1;
+    background: url("afbeeldingen/galaxy.jpg") center/cover no-repeat;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    position: relative;
+}
+
+.blok::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.8)
+    );
+    border-radius: 18px;
+}
+
+.prijs-tekst {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+}
+
+.blok1-tekst { color: #FFD966; font-size: 14px; }
+.blok2-tekst { color: #8DF2FB; font-size: 14px; }
+.blok3-tekst { color: #FFE699; font-size: 12px; }
