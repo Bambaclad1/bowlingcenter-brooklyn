@@ -1,4 +1,3 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -11,56 +10,54 @@ body {
     color: #fff;
 }
 
-/* HEADER */
 .header {
-    position: fixed;
+    position: absolute;
     top: 0;
-    left: 0;
     right: 0;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 50;
-    background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.6),
-        rgba(0,0,0,0)
-    );
-}
-
-.logo-pfp {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    padding: 18px 22px;
+    z-index: 30;
 }
 
 .menu-btn {
+    display: contents;
     font-size: 30px;
     background: none;
     border: none;
-    color: #fff;
+    color: white;
     cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
 }
 
-/* MOBILE MENU */
+.menu-btn:hover {
+    transform: scale(1.15);
+    color: #ff2fdc;
+}
+
 .mobile-menu {
     position: fixed;
     top: 0;
     right: -260px;
     width: 260px;
     height: 100%;
-    background: rgba(20,20,40,0.95);
-    backdrop-filter: blur(10px);
-    z-index: 40;
+    background: rgba(20, 20, 40, 0.65);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    z-index: 25;
     transition: right 0.35s ease;
 }
 
 .mobile-menu::before {
     content: "";
-    height: 70px;
-    background: linear-gradient(135deg, #ff2fdc, #6a0dad);
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(40, 0, 80, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 10;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .mobile-menu.open {
@@ -69,18 +66,100 @@ body {
 
 .mobile-menu ul {
     list-style: none;
-    padding-top: 90px;
+    padding: 100px 0 0;
+    text-align: center;
 }
 
 .mobile-menu li {
-    margin: 25px 0;
-    text-align: center;
+    margin: 30px 0;
 }
 
 .mobile-menu a {
     text-decoration: none;
+    color: rgba(255,255,255,0.95);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 12px rgba(255,47,220,0.4);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: #ff2fdc;
+    transform: scale(1.05);
+}
+
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85));
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    animation: fadeUp 1s ease forwards;
+}
+
+.logo-circle {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #1a1a2e, #000);
+    box-shadow: 0 0 25px rgba(255,47,220,0.6), inset 0 0 20px rgba(255,255,255,0.1);
+}
+
+.logo-circle img {
+    width: 85%;
+}
+
+.hero-content h1 {
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(255,47,220,0.6);
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    letter-spacing: 0.6px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #ff2fdc, #e11d48);
     color: #fff;
-    font-size: 20px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 25px rgba(255,47,220,0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 40px rgba(255,47,220,0.9);
 }
 
 /* HERO */
@@ -100,7 +179,7 @@ body {
     position: relative;
 }
 
-/* 🔥 BELANGRIJK: overlay blokkeert geen kliks */
+/* :fire: BELANGRIJK: overlay blokkeert geen kliks */
 .prijzen-hero::after {
     content: "";
     position: absolute;
@@ -158,3 +237,113 @@ body {
 .blok1-tekst { color: #FFD966; font-size: 14px; }
 .blok2-tekst { color: #8DF2FB; font-size: 14px; }
 .blok3-tekst { color: #FFE699; font-size: 12px; }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 600px) {
+    .blok {
+        aspect-ratio: 1;
+        background: url("afbeeldingen/galaxy.jpg") center/cover no-repeat;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px;
+        position: relative;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .logo-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 16px 36px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .menu-btn{
+        display: none
+    }
+    .blok {
+        flex: 1;
+        max-width: 320px;
+        aspect-ratio: 1;
+        padding: 40px;
+    }
+    .prijs-blokken {
+        max-width: none; 
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        justify-content: center;
+    }
+    .mobile-menu {
+        position: fixed; 
+        top: 20px;       
+        right: 20px;     
+        width: auto;
+        height: auto;
+        background: rgba(255, 255, 255, 0.05); 
+        backdrop-filter: blur(8px) brightness(0.7); 
+        display: flex;
+        align-items: center;
+        padding: 12px 40px;
+        border-radius: 50px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        transition: none;
+        z-index: 1000;
+    }
+
+    .mobile-menu::before {
+        display: none;
+    }
+
+    .mobile-menu ul {
+        display: flex;
+        gap: 50px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .mobile-menu li {
+        margin: 0;
+    }
+
+    .mobile-menu a {
+        font-size: 25px;
+        color: rgba(255,255,255,0.95);
+        text-shadow: 0 0 10px rgba(255,47,220,0.3);
+    }
+
+    .mobile-menu a:hover {
+        color: #ff2fdc;
+        transform: scale(1.05);
+    }
+
+    .header {
+        position: absolute;
+        top: 20px;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 50;
+    }
+}

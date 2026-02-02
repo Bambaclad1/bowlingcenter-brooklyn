@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prijzen - Bowling Center Brooklyn</title>
+    <title>Bowling Center Brooklyn</title>
     <link rel="stylesheet" href="prijzen.css">
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- Header met hamburger -->
 <header class="header">
-    <img src="afbeeldingen/bowling_logo.png" alt="Logo" class="logo-pfp">
     <button class="menu-btn" id="menu-btn">☰</button>
 </header>
 
-<!-- MOBILE MENU -->
+<!-- Slide-out menu -->
 <nav class="mobile-menu" id="mobile-menu">
     <ul>
         <li><a href="#">Over ons</a></li>
@@ -65,7 +64,7 @@
     </div>
 </section>
 
-<!-- SCRIPT -->
+<!-- JavaScript voor hamburger -->
 <script>
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
