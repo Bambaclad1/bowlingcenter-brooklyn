@@ -1,36 +1,34 @@
+/* Base */
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #F4EDEE; 
-  font-family: system-ui, sans-serif;
-}
-
-.header-bg {
-  background-color: #5b4a63; 
-  height: 600px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-
-}
-
-.login-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 200px;
-}
-
-.login-top h1 {
-    color: white;
-}
-
-/* Page background similar to the Figma */
-body {
-  margin: 0;
+  background-color: #F4EDEE;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Center the card */
+/* Header background */
+.header-bg {
+  background-color: #5b4a63;
+  height: 600px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+/* Top area (title etc.) */
+.login-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 200px; 
+  box-sizing: border-box;
+}
+
+.login-top h1 {
+  color: white;
+  margin: 0;
+}
+
+/* Card */
 .login-card {
   width: min(980px, calc(100% - 48px));
   margin: 48px auto;
@@ -40,6 +38,7 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.18);
   padding: 28px 28px 22px;
   color: #111;
+  box-sizing: border-box;
 }
 
 /* Labels */
@@ -96,7 +95,7 @@ body {
   transform: translateY(1px);
 }
 
-/* Footer link */
+/* Footer */
 .login-footer {
   margin-top: 14px;
   text-align: left;
@@ -108,6 +107,51 @@ body {
   text-decoration: underline;
 }
 
-.login-card a {
-    text-decoration: none;
+.login-card a { text-decoration: none; }
+
+
+/* Tablet en kleiner */
+@media (max-width: 768px) {
+  .header-bg {
+    height: 420px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+  }
+
+  .login-top {
+    padding: 120px 20px; /* minder dan 200px op tablet */
+  }
+
+  .login-card {
+    margin: 24px auto;
+    padding: 22px 20px 18px;
+    width: calc(100% - 32px);
+  }
+}
+
+/* Mobiel */
+@media (max-width: 480px) {
+  .header-bg {
+    height: 360px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+
+  .login-top {
+    padding: 72px 16px;
+  }
+
+  .login-card {
+    margin: 16px auto;
+    padding: 18px 16px 14px;
+    border-radius: 10px; 
+  }
+
+  .login-card input {
+    height: 42px;
+  }
+
+  .login-card button {
+    height: 46px;
+  }
 }
