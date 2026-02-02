@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bowling Center Brooklyn</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="template.css">
 </head>
 <body>
 
@@ -30,11 +30,11 @@
             <img src="afbeeldingen/bowling_logo.png" alt="Bowling Center Brooklyn">
         </div>
 
-        <h1>Bowling Center Brooklyn</h1>
+        <h1>Template.php</h1>
 
-        <p class="hero-subtitle">Waar plezier altijd scoort</p>
+        <p class="hero-subtitle">Success met het editen van deze template! Verwijder de hero sectie en je hebt een nette template.</p>
 
-        <a href="#" class="btn">Reserveer nu</a>
+        <a href="#" class="btn">Knopje!</a>
     </div>
 </section>
 
