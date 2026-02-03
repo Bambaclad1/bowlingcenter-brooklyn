@@ -1,0 +1,169 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+/* NAVBAR */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,0));
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.logo img {
+    width: 45px;
+}
+
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.9)),
+        url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 100px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 60px;
+}
+
+/* PRIJZEN BLOKKEN */
+.prijzen-container {
+    display: grid;
+    grid-template-columns: repeat(3, 260px);
+    gap: 40px;
+}
+
+.prijs-blok {
+    position: relative;
+    border-radius: 22px;
+    padding: 30px 22px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 30px rgba(0,0,0,.6);
+    overflow: hidden;
+}
+
+/* Overlay */
+.prijs-blok::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.85)
+    );
+}
+
+/* Tekst boven overlay */
+.prijs-blok * {
+    position: relative;
+    z-index: 2;
+}
+
+.prijs-blok h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.prijs-blok p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Achtergrond afbeeldingen */
+.blok-1 {
+    background-image: url("afbeeldingen/prijzen-bg.jpg");
+}
+
+.blok-2 {
+    background-image: url("afbeeldingen/magic-bowlen.jpg");
+}
+
+.blok-3 {
+    background-image: url("afbeeldingen/snacks.jpg");
+}
+
+/* Tekstkleuren */
+.geel { color: #FFD966; }
+.blauw { color: #8DF2FB; }
+.goud { color: #FFE699; }
+
+/* FOOTER BAR */
+.footer-bar {
+    background: #2a2230;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    font-size: 14px;
+}
+
+.footer-left {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-left img {
+    width: 55px;
+}
+
+.footer-right {
+    text-align: left;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .prijzen-container {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        padding: 20px;
+    }
+
+    .footer-bar {
+        flex-direction: column;
+        padding: 30px 25px;
+    }
+}
