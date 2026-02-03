@@ -42,7 +42,7 @@
 <section class="desktop-section">
     <div class="desktop-container">
         <!-- Vakje 1 -->
-        <div class="desktop-card">
+        <div class="desktop-card_blue">
             <img src="afbeeldingen/bowlen.jpeg" alt="Bowlen">
             <div class="card-text">
                 <h3>Bowlen</h3>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Vakje 2 -->
-        <div class="desktop-card">
+        <div class="desktop-card_pink">
             <img src="afbeeldingen/magicbowling.png" alt="Magic Bowlen">
             <div class="card-text">
                 <h3>Magic Bowlen</h3>

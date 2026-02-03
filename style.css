@@ -40,7 +40,7 @@ body {
     right: -260px;
     width: 260px;
     height: 100%;
-    background: rgba(20, 20, 40, 0.65);
+    background: rgba(75, 75, 105, 0.65);
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.6);
     z-index: 25;
@@ -211,7 +211,17 @@ body {
     }
 
     /* Vakjes */
-    .desktop-card {
+    .desktop-card_blue {
+        background: #111;
+        border-radius: 12px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 0 25px rgba(1,47,220,0.4);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .desktop-card_pink {
         background: #111;
         border-radius: 12px;
         overflow: hidden;
@@ -220,19 +230,24 @@ body {
         box-shadow: 0 0 25px rgba(255,47,220,0.4);
         transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .desktop-card:hover {
         transform: translateY(-5px) scale(1.02);
         box-shadow: 0 0 40px rgba(255,47,220,0.7);
     }
 
-    .desktop-card img {
+    .desktop-card_blue img {
         width: 100%;
         height: 250px;
         object-fit: cover;
         display: block;
     }
 
+    .desktop-card_pink img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+    }
     .card-text {
         padding: 20px;
         text-align: center;
