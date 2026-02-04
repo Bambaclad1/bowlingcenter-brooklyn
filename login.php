@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="nl">
+<?php
+require_once "db.php";
+?>
 
 <head>
     <meta charset="UTF-8">
