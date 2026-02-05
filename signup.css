@@ -1,0 +1,158 @@
+/* Base */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #F4EDEE;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Header background */
+.header-bg {
+  background-color: #5b4a63;
+  height: 600px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+/* Top area (title etc.) */
+.login-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 200px; 
+  box-sizing: border-box;
+}
+
+.login-top h1 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Card */
+.login-card {
+  width: min(980px, calc(100% - 48px));
+  margin: 48px auto;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding: 28px 28px 22px;
+  color: #111;
+  box-sizing: border-box;
+}
+
+/* Labels */
+.login-card label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin: 14px 0 8px;
+  text-align: left;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #dadada;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.login-card input::placeholder {
+  color: #a8a8a8;
+}
+
+.login-card input:focus {
+  border-color: #b9b9b9;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  height: 48px;
+  margin-top: 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  background: #262626;
+}
+
+.login-card button:active {
+  transform: translateY(1px);
+}
+
+/* Footer */
+.login-footer {
+  margin-top: 14px;
+  text-align: left;
+}
+
+.login-footer a {
+  color: #222;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.login-card a { text-decoration: none; }
+
+
+/* Tablet en kleiner */
+@media (max-width: 768px) {
+  .header-bg {
+    height: 420px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+  }
+
+  .login-top {
+    padding: 120px 20px; /* minder dan 200px op tablet */
+  }
+
+  .login-card {
+    margin: 24px auto;
+    padding: 22px 20px 18px;
+    width: calc(100% - 32px);
+  }
+}
+
+/* Mobiel */
+@media (max-width: 480px) {
+  .header-bg {
+    height: 360px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+
+  .login-top {
+    padding: 72px 16px;
+  }
+
+  .login-card {
+    margin: 16px auto;
+    padding: 18px 16px 14px;
+    border-radius: 10px; 
+  }
+
+  .login-card input {
+    height: 42px;
+  }
+
+  .login-card button {
+    height: 46px;
+  }
+}

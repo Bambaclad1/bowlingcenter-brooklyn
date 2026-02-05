@@ -1,6 +1,47 @@
 <!DOCTYPE html>
+
 <?php
+session_start();
 require_once "db.php";
+
+$signupMessage = "";
+$badMessage = "";
+
+// show signup success from redirect
+if (isset($_GET['signup']) && $_GET['signup'] === 'success') {
+    $signupMessage = "Account successvol gemaakt. U kan nu inloggen.";
+}
+
+// POST because GET shows password in URL
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $email = trim($_POST["email"] ?? "");
+    $password = $_POST["password"] ?? "";
+
+    if ($email === "" || $password === "") {
+        $signupMessage = "Fill in all fields.";
+    } else {
+        // prepares SQL query and searches DB for query
+        $sql = "SELECT password_hash FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($hash);
+
+        // login comparison logica
+        if (!$stmt->fetch()) {
+            $badMessage = "Email not found.";
+        } elseif (!password_verify($password, $hash)) {
+            $badMessage = "Incorrect password.";
+        } else {
+            $_SESSION['user'] = $email;
+            header("Location: index.php");
+            exit;
+        }
+        $stmt->close();
+    }
+    $conn->close();
+}
 ?>
 
 <head>
@@ -11,6 +52,7 @@ require_once "db.php";
 </head>
 
 <body>
+
 
     <section class="login">
         <div class="header-bg">
@@ -23,15 +65,21 @@ require_once "db.php";
         </div>
     </section>
 
-    <form class="login-card">
-        <p><strong>Username</strong></p>
-        <input type="text" id="fname" name="fname"><br><br>
+    <form class="login-card" method="POST">
+        <?php if ($signupMessage !== ""): ?>
+            <p class="success-message"><?php echo $signupMessage; ?></p>
+        <?php endif; ?>
+        <?php if ($badMessage !== ""): ?>
+            <p class="bad-message"><?php echo $badMessage; ?></p>
+        <?php endif; ?>
+        <p><strong>Email</strong></p>
+        <input type="email" name="email"><br><br>
         <p><strong>Password</strong></p>
-        <input type="text" id="fname" name="fname"><br><br>
-        <button type="submit">Sign In</button>
-        <a href="https://www.example.com/forgot.php">Forgot password?</a>
+        <input type="password" name="password"><br><br>
+        <button type="submit" name="login_clicked">Sign In</button>
+        <a href="https://www.example.com/forgot.php">Forgot password?</a><br><br>
+        <a href="signup.php">Switch to Sign Up</a>
     </form>
-
 
 </body>
 
