@@ -22,19 +22,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $signupMessage = "Fill in all fields.";
     } else {
         // prepares SQL query and searches DB for query
-        $sql = "SELECT password_hash FROM users WHERE email = ?";
+        $sql = "SELECT id, name, email, password_hash, role, created_at FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($hash);
 
-        // login comparison logica
-        if (!$stmt->fetch()) {
+        $result = $stmt->get_result();
+
+        $user = $result->fetch_assoc();
+
+        // login logic
+        if (!$user) {
             $badMessage = "Email not found.";
-        } elseif (!password_verify($password, $hash)) {
+        } elseif (!password_verify($password, $user["password_hash"])) {
             $badMessage = "Incorrect password.";
         } else {
-            $_SESSION['user'] = $email;
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_role'] = $user['role'];
+
             header("Location: index.php");
             exit;
         }

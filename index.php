@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
+<?php
+    session_start();
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,9 +23,20 @@
         <li><a href="over_ons.php">Over ons</a></li>
         <li><a href="#">Agenda</a></li>
         <li><a href="prijzen.php">Prijzen</a></li>
+    <?php if (!isset($_SESSION['user_id'])): ?>
         <li><a href="login.php">Login</a></li>
+    <?php else: ?>
+        <li><a href="logout.php">Logout</a></li>
+    <?php endif; ?>
     </ul>
 </nav>
+
+<!-- DEBUG LOGIN SYSTEEM -->
+<p><b>DEVELOPER DEBUG</b></p>
+<p>User ID: <?= $_SESSION['user_id'] ?? 'not logged in' ?></p>
+<p>Email: <?= $_SESSION['user_email'] ?? '—' ?></p>
+<p>Name: <?= $_SESSION['user_name'] ?? '—' ?></p>
+<p>Role: <?= $_SESSION['user_role'] ?? '—' ?></p>
 
 <!-- Hero sectie -->
 <section class="hero">
