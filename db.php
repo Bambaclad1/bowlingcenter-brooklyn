@@ -1,4 +1,5 @@
 <?php // Run this .php code to connect with the database! Don't forget to close the connection afterwards.
+    session_start();
     $servername = "localhost";
     $username = "root";
     $password = "";
