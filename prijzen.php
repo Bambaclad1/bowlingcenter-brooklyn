@@ -8,22 +8,20 @@
 </head>
 <body>
 
-<!-- Header met hamburger -->
 <header class="header">
     <button class="menu-btn" id="menu-btn">☰</button>
 </header>
 
-<!-- Slide-out menu -->
 <nav class="mobile-menu" id="mobile-menu">
     <ul>
-        <li><a href="#">Over ons</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="over_ons.php">Over ons</a></li>
         <li><a href="#">Agenda</a></li>
-        <li><a href="#">Prijzen</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="prijzen.php">Prijzen</a></li>
+        <li><a href="login.php">Login</a></li>
     </ul>
 </nav>
 
-<!-- PRIJZEN -->
 <section class="prijzen-hero">
     <h1 class="prijzen-title">Prijzen</h1>
     <p class="prijzen-subtitle">Reserveer onze baan voor een leuke avond bowlen</p>
@@ -64,7 +62,37 @@
     </div>
 </section>
 
-<!-- JavaScript voor hamburger -->
+<footer class="footer-contact">
+    <div class="footer-bar">
+
+        <div class="footer-logo">
+            <img src="afbeeldingen/bowling_logo.png" alt="Logo Bowling Center Brooklyn">
+        </div>
+
+        <div class="footer-middle">
+            <p>
+                <strong>Bowling Center Brooklyn</strong><br>
+                Brooklynlaan 12<br>
+                1234 AB Stadshaven<br>
+                Telefoon: 010 – 123 45 67<br>
+                E-mail: info@bowlingcenterbrooklyn.nl
+            </p>
+        </div>
+
+        <div class="footer-right">
+            <p>
+                <strong>Openingstijden</strong><br>
+                Maandag: gesloten<br>
+                Dinsdag t/m donderdag: 14:00 – 22:00<br>
+                Vrijdag: 14:00 – 23:00<br>
+                Zaterdag: 12:00 – 23:00<br>
+                Zondag: 12:00 – 21:00
+            </p>
+        </div>
+
+    </div>
+</footer>
+
 <script>
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');

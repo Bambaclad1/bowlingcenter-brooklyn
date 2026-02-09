@@ -16,10 +16,11 @@
 <!-- Slide-out menu -->
 <nav class="mobile-menu" id="mobile-menu">
     <ul>
-        <li><a href="#">Over ons</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="over_ons.php">Over ons</a></li>
         <li><a href="#">Agenda</a></li>
-        <li><a href="#">Prijzen</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="prijzen.php">Prijzen</a></li>
+        <li><a href="login.php">Login</a></li>
     </ul>
 </nav>
 

@@ -40,7 +40,7 @@ body {
     right: -260px;
     width: 260px;
     height: 100%;
-    background: rgba(75, 75, 105, 0.65);
+    background: rgba(20, 20, 40, 0.65);
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.6);
     z-index: 25;
@@ -281,7 +281,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #a64eff19;
+    background-color: #9632f92e;
     padding: 20px 40px;
     height: 250px; /* VERGROOT HIER DE BALK */
     border-radius: 12px;
