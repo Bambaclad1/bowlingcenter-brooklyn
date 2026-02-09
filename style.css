@@ -275,25 +275,7 @@ body {
         border-radius: 0;
         box-shadow: none;
     }
-
-    /* Paarse balk */
-    .purple-bar {
-        display: block;
-        height: 20px;
-        width: 100%;
-        background-color: #8000ff;
-        border-radius: 0;
-    }
-
-    /* Extra balk onder paarse balk */
-    .extra-bar {
-        display: block;
-        height: 30px;
-        width: 100%;
-        background-color: #4b0082;
-        border-radius: 0;
-    }
-
+    
     /* ===== Contact sectie ===== */
 .contact-section {
     display: flex;

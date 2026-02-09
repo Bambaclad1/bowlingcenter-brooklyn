@@ -105,6 +105,6 @@ echo _gettext("(current)");
 
     public function getSourceContext()
     {
-        return new Source("", "top_menu.twig", "C:\\xampp\\phpMyAdmin\\templates\\top_menu.twig");
+        return new Source("", "top_menu.twig", "C:\\xampp\\htdocs\\bowlingcenter-brooklyn\\phpMyAdmin\\templates\\top_menu.twig");
     }
 }

@@ -94,6 +94,6 @@ class __TwigTemplate_c3f52c8bf25d8f0d03d9308d27f25bb2 extends Template
 
     public function getSourceContext()
     {
-        return new Source("", "console/query_action.twig", "C:\\xampp\\phpMyAdmin\\templates\\console\\query_action.twig");
+        return new Source("", "console/query_action.twig", "C:\\xampp\\htdocs\\bowlingcenter-brooklyn\\phpMyAdmin\\templates\\console\\query_action.twig");
     }
 }
