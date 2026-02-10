@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bowling Center Brooklyn</title>
-    <link rel="stylesheet" href="prijzen.css">
+    <title>Prijzen - Bowling Center Brooklyn</title>
+    <link rel="stylesheet" href="style1.css">
 </head>
 <body>
 
@@ -28,47 +28,52 @@
 
     <div class="prijs-blokken">
 
-        <div class="blok">
-            <p class="prijs-tekst blok1-tekst">
-                Maandag t/m donderdag: € 24,- per uur<br>
-                Vrijdag t/m zondag: € 28,- per uur<br>
-                Na 18:00: € 33,50,- per uur
-            </p>
-        </div>
+    <!-- Blok 1 -->
+    <div class="blok blok1">
+        <p class="prijs-tekst blok1-tekst">
+            <strong>Bowlen</strong><br><br>
 
-        <div class="blok">
-            <p class="prijs-tekst blok2-tekst">
-                Magic Bowlen<br>
-                Elke vrijdag t/m zondag<br>
-                Vanaf 18:00 t/m 24:00
-            </p>
-        </div>
-
-        <div class="blok">
-            <p class="prijs-tekst blok3-tekst">
-                <strong>Snackpakketten</strong><br><br>
-                <strong>Basis Pakket € 32,-</strong><br>
-                Friet met saus naar keuze<br>
-                1 Snack (Frikandel/Kipcorn)<br>
-                Fris naar keuze<br><br>
-                <strong>Luxe Pakket € 84,-</strong><br>
-                Friet met saus naar keuze<br>
-                2 Snacks (Frikandel/Kipcorn)<br>
-                Fris naar keuze<br>
-                Chips naar keuze
-            </p>
-        </div>
-
+            Maandag t/m donderdag: <strong>€24,-</strong> per uur<br>
+            Vrijdag t/m zondag: <strong>€28,-</strong> per uur<br>
+            Na 18:00: <strong>€33,50,-</strong> per uur
+        </p>
     </div>
+
+    <!-- Blok 2 -->
+    <div class="blok blok2">
+        <p class="prijs-tekst blok2-tekst">
+            <strong>Magic Bowlen</strong><br><br>
+
+            Elke vrijdag t/m zondag<br>
+            Vanaf <strong>18:00</strong> t/m <strong>24:00</strong>
+        </p>
+    </div>
+
+    <!-- Blok 3 -->
+    <div class="blok blok3">
+        <p class="prijs-tekst blok3-tekst">
+            <strong>Snackpakketten</strong><br><br>
+
+            <strong>Basis Pakket €32,-</strong><br>
+            • Friet met saus naar keuze<br>
+            • 1 Snack (Frikandel / Kipcorn)<br>
+            • Fris naar keuze<br><br>
+
+            <strong>Luxe Pakket €84,-</strong><br>
+            • Friet met saus naar keuze<br>
+            • 2 Snacks (Frikandel / Kipcorn)<br>
+            • Fris naar keuze<br>
+            • Chips naar keuze
+        </p>
+    </div>
+
+</div>
+
 </section>
 
 <footer class="footer-contact">
     <div class="footer-bar">
-
-        <div class="footer-logo">
-            <img src="afbeeldingen/bowling_logo.png" alt="Logo Bowling Center Brooklyn">
-        </div>
-
+        <div class="footer-logo"><img src="afbeeldingen/bowling_logo.png" alt="Logo"></div>
         <div class="footer-middle">
             <p>
                 <strong>Bowling Center Brooklyn</strong><br>
@@ -78,7 +83,6 @@
                 E-mail: info@bowlingcenterbrooklyn.nl
             </p>
         </div>
-
         <div class="footer-right">
             <p>
                 <strong>Openingstijden</strong><br>
@@ -89,17 +93,13 @@
                 Zondag: 12:00 – 21:00
             </p>
         </div>
-
     </div>
 </footer>
 
 <script>
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
-
-menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-});
+menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
 </script>
 
 </body>

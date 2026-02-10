@@ -15,21 +15,18 @@ body {
     top: 0;
     right: 0;
     padding: 18px 22px;
-    z-index: 30;
 }
 
 .menu-btn {
-    display: inline-block; /* niet contents */
-    position: relative;
-    z-index: 50; /* hoog genoeg om boven andere content te liggen */
+    display: inline-block;
     font-size: 30px;
     background: none;
     border: none;
-    color: white;
+    color: #fff;
     cursor: pointer;
     transition: transform 0.2s, color 0.2s;
+    z-index: 50;
 }
-
 
 .menu-btn:hover {
     transform: scale(1.15);
@@ -42,11 +39,11 @@ body {
     right: -260px;
     width: 260px;
     height: 100%;
-    background: rgba(20, 20, 40, 0.65);
+    background: rgba(20,20,40,0.65);
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-    z-index: 25;
     transition: right 0.35s ease;
+    z-index: 25;
 }
 
 .mobile-menu::before {
@@ -56,16 +53,12 @@ body {
     left: 0;
     width: 100%;
     height: 80px;
-    background: rgba(40, 0, 80, 0.5);
+    background: rgba(40,0,80,0.5);
     backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    z-index: 10;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.mobile-menu.open {
-    right: 0;
-}
+.mobile-menu.open { right: 0; }
 
 .mobile-menu ul {
     list-style: none;
@@ -73,9 +66,7 @@ body {
     text-align: center;
 }
 
-.mobile-menu li {
-    margin: 30px 0;
-}
+.mobile-menu li { margin: 30px 0; }
 
 .mobile-menu a {
     text-decoration: none;
@@ -94,31 +85,16 @@ body {
 
 .prijzen-hero {
     min-height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.9)), url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 120px 20px 40px;
     text-align: center;
-    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.9)), url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
 }
 
-.prijzen-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.prijzen-title {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.prijzen-subtitle {
-    font-size: 16px;
-    margin-bottom: 35px;
-}
+.prijzen-title { font-size: 36px; margin-bottom: 10px; }
+.prijzen-subtitle { font-size: 16px; margin-bottom: 35px; }
 
 .prijs-blokken {
     display: flex;
@@ -156,31 +132,6 @@ body {
 .blok2-tekst { color: #8DF2FB; font-size: 14px; }
 .blok3-tekst { color: #FFE699; font-size: 12px; }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (min-width: 600px) {
-    .blok { padding: 50px; }
-    .hero-content h1 { font-size: 36px; }
-    .logo-circle { width: 220px; height: 220px; }
-    .btn { font-size: 18px; padding: 16px 36px; }
-}
-
-@media (min-width: 1024px) {
-    .menu-btn{ display: none; }
-    .blok { flex: 1; max-width: 320px; padding: 40px; }
-    .prijs-blokken { max-width: none; width: 80%; display: flex; flex-direction: row; gap: 40px; justify-content: center; }
-    .mobile-menu { position: fixed; top: 20px; right: 20px; width: auto; height: auto; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(8px) brightness(0.7); display: flex; align-items: center; padding: 12px 40px; border-radius: 50px; box-shadow: 0 0 20px rgba(0,0,0,0.2); transition: none; z-index: 1000; }
-    .mobile-menu::before { display: none; }
-    .mobile-menu ul { display: flex; gap: 50px; padding: 0; margin: 0; }
-    .mobile-menu li { margin: 0; }
-    .mobile-menu a { font-size: 25px; color: rgba(255,255,255,0.95); text-shadow: 0 0 10px rgba(255,47,220,0.3); }
-    .mobile-menu a:hover { color: #ff2fdc; transform: scale(1.05); }
-    .header { position: absolute; top: 20px; right: 0; width: 100%; display: flex; justify-content: flex-end; z-index: 50; }
-}
-
 .footer-contact {
     background: #9632f92e;
     padding: 60px 20px;
@@ -193,13 +144,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(200, 180, 255, 0.15);
+    background: rgba(200,180,255,0.15);
     padding: 30px 40px;
     border-radius: 25px;
     gap: 40px;
     max-width: 1200px;
     width: 100%;
-    transition: background 0.3s ease;
 }
 
 .footer-logo img {
@@ -210,19 +160,13 @@ body {
     border: 3px solid #fff;
 }
 
-.footer-middle {
-    flex: 1;
-    text-align: center;
+.footer-middle, .footer-right {
     font-size: 17px;
     line-height: 1.8;
 }
 
-.footer-right {
-    max-width: 300px;
-    text-align: left;
-    font-size: 17px;
-    line-height: 1.8;
-}
+.footer-middle { flex: 1; text-align: center; }
+.footer-right { max-width: 300px; text-align: left; }
 
 .footer-middle strong,
 .footer-right strong {
@@ -230,32 +174,35 @@ body {
     color: #ff2fdc;
 }
 
-/* ===== Footer responsive voor mobiel ===== */
-@media (max-width: 1023px) {
-    .footer-bar {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 30px 20px;
-    }
-
-    .footer-logo img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .footer-middle,
-    .footer-right {
-        text-align: center;
-        max-width: 100%;
-        font-size: 17px;
-        line-height: 1.8;
-    }
-
-    .footer-middle strong,
-    .footer-right strong {
-        font-size: 20px;
-    }
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+@media (min-width: 600px) { .blok { padding: 50px; } }
 
+@media (min-width: 1024px) {
+    .menu-btn { display: none; }
+    .blok { flex: 1; max-width: 320px; padding: 40px; }
+    .prijs-blokken { max-width: none; width: 80%; flex-direction: row; gap: 40px; justify-content: center; }
+    .mobile-menu {
+        top: 20px; right: 20px; width: auto; height: auto;
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(8px) brightness(0.7);
+        display: flex; align-items: center; padding: 12px 40px;
+        border-radius: 50px; box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        transition: none; z-index: 1000;
+    }
+    .mobile-menu::before { display: none; }
+    .mobile-menu ul { display: flex; gap: 50px; padding: 0; margin: 0; }
+    .mobile-menu li { margin: 0; }
+    .mobile-menu a { font-size: 25px; color: rgba(255,255,255,0.95); text-shadow: 0 0 10px rgba(255,47,220,0.3); }
+    .mobile-menu a:hover { color: #ff2fdc; transform: scale(1.05); }
+    .header { top: 20px; width: 100%; display: flex; justify-content: flex-end; z-index: 50; }
+}
+
+@media (max-width: 1023px) {
+    .footer-bar { flex-direction: column; align-items: center; gap: 20px; padding: 30px 20px; }
+    .footer-logo img { width: 150px; height: 150px; }
+    .footer-middle, .footer-right { text-align: center; max-width: 100%; }
+}
