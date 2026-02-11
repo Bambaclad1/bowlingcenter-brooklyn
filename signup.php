@@ -5,6 +5,7 @@ require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    
     $canLogin = true;
     $fname = trim($_POST["fname"] ?? "");
     $lname = trim($_POST["lname"] ?? "");

@@ -12,7 +12,73 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] === 'user') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../login.css">
+    <link rel="stylesheet" href="medewerker.css">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js'></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
 
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    initialDate: '2026-02-07',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    events: [
+      {
+        title: 'All Day Event',
+        start: '2026-02-01'
+      },
+      {
+        title: 'Long Event',
+        start: '2026-02-07',
+        end: '2026-02-10'
+      },
+      {
+        groupId: '999',
+        title: 'Repeating Event',
+        start: '2026-02-09T16:00:00'
+      },
+      {
+        groupId: '999',
+        title: 'Repeating Event',
+        start: '2026-02-16T16:00:00'
+      },
+      {
+        title: 'Conference',
+        start: '2026-02-11',
+        end: '2026-02-13'
+      },
+      {
+        title: 'Meeting',
+        start: '2026-02-12T10:30:00',
+        end: '2026-02-12T12:30:00'
+      },
+      {
+        title: 'Lunch',
+        start: '2026-02-12T12:00:00'
+      },
+      {
+        title: 'Meeting',
+        start: '2026-02-12T14:30:00'
+      },
+      {
+        title: 'Birthday Party',
+        start: '2026-02-13T07:00:00'
+      },
+      {
+        title: 'Click for Google',
+        url: 'https://google.com/',
+        start: '2026-02-28'
+      }
+    ]
+  });
+
+  calendar.render();
+});
+  </script>
 </head>
 <body>
     <!-- Nav Menu -->
@@ -34,9 +100,6 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] === 'user') {
             </div>
         </div>
     </section>
-
-    <form class="login-card" >
-        <p><strong>Email</strong></p>
-        <input type="email" name="email"><br><br>
-    </form></body>
+      <div id='calendar'></div>
+  </body>
 </html>
