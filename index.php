@@ -2,6 +2,11 @@
 <html lang="nl">
 <?php
     session_start();
+
+    if (isset($_POST["unset"])) {
+        session_unset();
+        session_destroy();
+    }
 ?>
 <head>
     <meta charset="UTF-8">
@@ -25,6 +30,10 @@
         <li><a href="prijzen.php">Prijzen</a></li>
     <?php if (!isset($_SESSION['user_id'])): ?>
         <li><a href="login.php">Login</a></li>
+    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'medewerker'): ?>
+        <li><a href="dashboard/medewerker.php">Dashboard</a></li>
+    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'owner'): ?>
+        <li><a href="owner.php">Dashboard</a></li>
     <?php else: ?>
         <li><a href="logout.php">Logout</a></li>
     <?php endif; ?>
@@ -37,7 +46,9 @@
 <p>Email: <?= $_SESSION['user_email'] ?? '—' ?></p>
 <p>Name: <?= $_SESSION['user_name'] ?? '—' ?></p>
 <p>Role: <?= $_SESSION['user_role'] ?? '—' ?></p>
-
+<form method="POST">
+    <button type="submit" name="unset">session_unset()</button>
+</form>
 <!-- Hero sectie -->
 <section class="hero">
     <div class="hero-content">
