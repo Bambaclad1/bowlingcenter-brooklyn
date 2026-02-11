@@ -153,6 +153,10 @@ body {
     padding: 72px 16px;
   }
 
+  .login-top h1 {
+   font-size: 24px
+  }
+
   .login-card {
     margin: 16px auto;
     padding: 18px 16px 14px;
