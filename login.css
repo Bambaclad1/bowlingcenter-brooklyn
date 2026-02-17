@@ -179,6 +179,11 @@ body {
   color: white;
   text-decoration: none;
 }
+
+.calendar-location {
+  margin: 200px;
+}
+
 /* Mobiel */
 @media (max-width: 480px) {
   .header-bg {
