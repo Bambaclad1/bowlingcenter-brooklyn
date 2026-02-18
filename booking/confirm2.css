@@ -1,0 +1,97 @@
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+        }
+        .booking-page {
+            padding: 80px 16px;
+            background: #000;
+            position: relative;
+            min-height: 100vh;
+        }
+        .booking-page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(700px 380px at 20% 20%, rgba(255, 47, 220, 0.18), transparent 60%),
+                radial-gradient(680px 360px at 80% 30%, rgba(140, 60, 255, 0.14), transparent 60%),
+                radial-gradient(800px 420px at 50% 100%, rgba(255, 47, 220, 0.1), transparent 65%);
+            pointer-events: none;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            color: #fff;
+        }
+        .booking-card {
+            background: rgba(20, 20, 40, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.65);
+            border-radius: 18px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        h1, h3 {
+            text-align: center;
+            font-weight: 800;
+        }
+        h1 { font-size: 32px; margin-bottom: 24px; }
+        h3 { font-size: 24px; margin-bottom: 18px; }
+
+        p {
+            font-size: 18px;
+            margin: 6px 0;
+        }
+
+        .confirm-part-one p {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 47, 220, 0.2);
+            color: #fff;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background: rgba(255, 47, 220, 0.4);
+            transform: scale(1.05);
+        }
+
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 320px;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0,0,0,0.35);
+            color: #fff;
+            font-weight: 600;
+            outline: none;
+        }
+
+        @media (max-width: 480px) {
+            input[type="text"], input[type="email"], input[type="number"] {
+                width: 90%;
+            }
+        }
+
+        .highlight {
+            color: #ff2fec;
+            font-weight: 900;
+        }

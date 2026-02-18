@@ -26,7 +26,7 @@
     <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="over_ons.php">Over ons</a></li>
-        <li><a href="#">Agenda</a></li>
+        <li><a href="booking/beta.php">Agenda</a></li>
         <li><a href="prijzen.php">Prijzen</a></li>
     <?php if (!isset($_SESSION['user_id'])): ?>
         <li><a href="login.php">Login</a></li>

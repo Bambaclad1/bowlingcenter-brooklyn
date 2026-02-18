@@ -4,7 +4,6 @@ session_start();
 require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
     
     $canLogin = true;
     $fname = trim($_POST["fname"] ?? "");
@@ -38,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->close();
         $conn->close();
         echo "<script>alert('You may now login with your credentials.');</script>";
-        header("Location: login.php?signup=success");
+        header(header: "Location: login.php?signup=success");
         exit;
     } else {
         $conn->close();
