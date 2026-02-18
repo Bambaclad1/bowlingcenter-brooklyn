@@ -176,6 +176,7 @@ body {
   display: flex;
   gap: 64px;
   list-style: none;
+  padding-right: 80px;
 }
 
 .top-nav a {

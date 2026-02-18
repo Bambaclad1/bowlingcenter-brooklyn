@@ -97,6 +97,7 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] === 'user') {
             <li><a href="index.php">Overzicht</a></li>
             <li><a href="over_ons.php">Reservering</a></li>
             <li><a href="#">Gebruikers</a></li>
+            <li><a href="#">Uitloggen</a></li>
           </ul>
         </nav>
       </div>
