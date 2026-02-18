@@ -40,15 +40,7 @@
     </ul>
 </nav>
 
-<!-- DEBUG LOGIN SYSTEEM -->
-<p><b>DEVELOPER DEBUG</b></p>
-<p>User ID: <?= $_SESSION['user_id'] ?? 'not logged in' ?></p>
-<p>Email: <?= $_SESSION['user_email'] ?? '—' ?></p>
-<p>Name: <?= $_SESSION['user_name'] ?? '—' ?></p>
-<p>Role: <?= $_SESSION['user_role'] ?? '—' ?></p>
-<form method="POST">
-    <button type="submit" name="unset">session_unset()</button>
-</form>
+
 <!-- Hero sectie -->
 <section class="hero">
     <div class="hero-content">

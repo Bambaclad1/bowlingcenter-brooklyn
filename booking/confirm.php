@@ -37,13 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Reservatie form ingevuld
+    // Reservatie form ingevult
     if (isset($_POST['fname'])) {
         $fname = trim($_POST['fname']);
         $lname = trim($_POST['lname']);
         $email = trim($_POST['email']);
         $number = trim($_POST['number']);
 
+        $password_hash = password_hash('placeholder123', PASSWORD_DEFAULT);
         $role = 'customer';
         $created_at = date('Y-m-d H:i:s');
 
@@ -58,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = "<p style='color:red;'>Deze email is al geregistreerd!</p>";
         } else {
             // Voeg user toe
-            $stmt = $conn->prepare("INSERT INTO users (name, email, role, created_at) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO users (name, email, password_hash, role, created_at) VALUES (?, ?, ?, ?, ?)");
             if(!$stmt) die("Prepare failed: " . $conn->error);
 
             $name_full = $fname . ' ' . $lname;
-            $stmt->bind_param("sssss", $name_full, $email, $role, $created_at);
+            $stmt->bind_param("sssss", $name_full, $email, $password_hash, $role, $created_at);
 
             if ($stmt->execute()) {
                 $user_id = $stmt->insert_id;
@@ -98,6 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $stmt_res->close();
 
+                parse_str($_SERVER['QUERY_STRING'], $paramsconfirmed);
+               header("Location: ../booking.php?" . http_build_query($paramsconfirmed));
             } else {
                 $message = "<p style='color:red;'>Fout bij registratie: " . $stmt->error . "</p>";
             }
