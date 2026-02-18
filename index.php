@@ -16,6 +16,16 @@
 </head>
 <body>
 
+<!-- Developer Debug -->
+<p><b>DEVELOPER DEBUG (Not for production)</b></p>
+<p>User ID: <?= $_SESSION['user_id'] ?? 'not logged in' ?></p>
+<p>Email: <?= $_SESSION['user_email'] ?? '—' ?></p>
+<p>Name: <?= $_SESSION['user_name'] ?? '—' ?></p>
+<p>Role: <?= $_SESSION['user_role'] ?? '—' ?></p>
+<form method="POST">
+    <button type="submit" name="unset">session_unset()</button>
+</form>
+
 <!-- Header -->
 <header class="header">
     <button class="menu-btn" id="menu-btn">☰</button>
@@ -33,7 +43,7 @@
     <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'medewerker'): ?>
         <li><a href="dashboard/medewerker.php">Dashboard</a></li>
     <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'owner'): ?>
-        <li><a href="owner.php">Dashboard</a></li>
+        <li><a href="dashboard/medewerker.php">Dashboard</a></li>
     <?php else: ?>
         <li><a href="logout.php">Logout</a></li>
     <?php endif; ?>
