@@ -151,12 +151,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($confirmed == true): ?>
         <div class="booking-card confirm-part-two">
             <form method="POST">
-                <h3>Vul deze informatie in</h3>
-                <input type="text" name="fname" placeholder="Voornaam" required>
-                <input type="text" name="lname" placeholder="Achternaam" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="number" name="number" placeholder="Telefoon Nummer" required>
-                <button type="submit">Reserveren</button>
+        <h3>Vul deze informatie in</h3>
+
+        <input type="text" name="fname" placeholder="Voornaam" 
+               value="<?= $_SESSION['user_name'] ?? '' ?>" required>
+        <input type="text" name="lname" placeholder="Achternaam"
+               value="<?= $_SESSION['user_lastname'] ?? '' ?>" required>
+        <input type="email" name="email" placeholder="Email" 
+               value="<?= $_SESSION['user_email'] ?? '' ?>" required>
+        <input type="number" name="number" placeholder="Telefoon Nummer" 
+               value="<?= $_SESSION['user_number'] ?? '' ?>" required>
+        <button type="submit">Reserveren</button>
             </form>
         </div>
         <?php endif; ?>

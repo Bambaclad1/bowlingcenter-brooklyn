@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <?php
 session_start();
+require_once "../db.php";
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] === 'user') {
   header("Location: ../index.php");
+}
+$reservation_date = $_GET['reservation_date'] ?? date('Y-m-d');
+
+// prepares SQL query and searches DB for query
+$stmt = $conn->prepare("SELECT * FROM reservations WHERE reservation_date = ?");
+$stmt->bind_param("s", $reservation_date);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$noReservations = false;
+if ($result->num_rows > 0) {
+  $noReservations = true;
 }
 
 ?>
@@ -13,73 +26,6 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] === 'user') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="dashboard.css">
-  <link rel="stylesheet" href="agenda.css">
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js'></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var calendarEl = document.getElementById('calendar');
-
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2026-02-07',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        events: [
-          {
-            title: 'All Day Event',
-            start: '2026-02-01'
-          },
-          {
-            title: 'Long Event',
-            start: '2026-02-07',
-            end: '2026-02-10'
-          },
-          {
-            groupId: '999',
-            title: 'Repeating Event',
-            start: '2026-02-09T16:00:00'
-          },
-          {
-            groupId: '999',
-            title: 'Repeating Event',
-            start: '2026-02-16T16:00:00'
-          },
-          {
-            title: 'Conference',
-            start: '2026-02-11',
-            end: '2026-02-13'
-          },
-          {
-            title: 'Meeting',
-            start: '2026-02-12T10:30:00',
-            end: '2026-02-12T12:30:00'
-          },
-          {
-            title: 'Lunch',
-            start: '2026-02-12T12:00:00'
-          },
-          {
-            title: 'Meeting',
-            start: '2026-02-12T14:30:00'
-          },
-          {
-            title: 'Birthday Party',
-            start: '2026-02-13T07:00:00'
-          },
-          {
-            title: 'Click for Google',
-            url: 'https://google.com/',
-            start: '2026-02-28'
-          }
-        ]
-      });
-
-      calendar.render();
-    });
-  </script>
 </head>
 
 <body>
@@ -100,11 +46,51 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] === 'user') {
           </ul>
         </nav>
       </div>
-<div class="calendar-background">
-  <div class="calendar-location">
-    <div id="calendar"></div>
-  </div>
-</div>
+      <!-- Reservations -->
+      <div class="calendar-background">
+        <div class="calendar-location">
+          <h2>Welkom in het reservatie overzicht</h2>
+          <p>Als er geen reservaties zijn dan komt er niks verschijnen.</p>
+          <!-- Filter knopje stuurt datum naar URL met GET form voor datum filter-->
+          <form method="GET">
+            <label for="reservation_date">Filter op datum:</label>
+            <input type="date" name="reservation_date" value="<?= $reservation_date ?>">
+            <button type="submit" class="filter-btn">Filter</button>
+          </form>'
+          <div class="table-wrapper">
+             <table class="excel-table">
+            <thead>
+              <tr>
+                <?php
+                // Pakt de columns van de reservaties en gooit ze in een tabel
+                while ($field = $result->fetch_field()) {
+                  echo "<th>{$field->name}</th>";
+                }
+                ?>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              // Maakt <td> kopjes aan als er data is, zo niet, else statement runt
+              if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                      echo "<tr>";
+                      foreach ($row as $value) {
+                          echo "<td>$value</td>";
+                      }
+                      echo "</tr>";
+                  }
+
+              } else {
+                  echo "<tr><td colspan='10'><strong>Geen reservaties op deze datum!</strong></td></tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+          </div>
+          <p></p>
+        </div>
+      </div>
 
     </div>
   </section>

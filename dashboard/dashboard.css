@@ -228,3 +228,34 @@ body {
     height: 46px;
   }
 }
+/* Reseravtie Tabel code */
+.excel-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+.excel-table th,
+.excel-table td {
+    border: 1px solid #d9d9d9;
+    padding: 8px 10px;
+}
+
+.excel-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.excel-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.excel-table tr:hover {
+    background-color: #e6f2ff;
+}
+
+.table-wrapper {
+    overflow-y: auto;   
+    overflow-x: auto;    
+}

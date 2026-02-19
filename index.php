@@ -59,7 +59,7 @@
         </div>
         <h1>Bowling Center Brooklyn</h1>
         <p class="hero-subtitle">Waar plezier altijd scoort</p>
-        <a href="#" class="btn">Reserveer nu</a>
+        <a href="booking/beta.php" class="btn">Reserveer nu</a>
     </div>
 </section>
 
