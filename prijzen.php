@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
+<?php
+    session_start();
+
+    // Huidige pagina bepalen voor actieve link
+    $current_page = basename($_SERVER['PHP_SELF']);
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +20,17 @@
 
 <nav class="mobile-menu" id="mobile-menu">
     <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="over_ons.php">Over ons</a></li>
-        <li><a href="booking/beta.php">Agenda</a></li>
-        <li><a href="prijzen.php">Prijzen</a></li>
-        <li><a href="login.php">Login</a></li>
+        <li><a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Home</a></li>
+        <li><a href="over_ons.php" class="<?= ($current_page == 'over_ons.php') ? 'active' : '' ?>">Over ons</a></li>
+        <li><a href="booking/beta.php" class="<?= ($current_page == 'beta.php') ? 'active' : '' ?>">Agenda</a></li>
+        <li><a href="prijzen.php" class="<?= ($current_page == 'prijzen.php') ? 'active' : '' ?>">Prijzen</a></li>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            <li><a href="login.php" class="<?= ($current_page == 'login.php') ? 'active' : '' ?>">Login</a></li>
+        <?php elseif (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'medewerker' || $_SESSION['user_role'] === 'owner')): ?>
+            <li><a href="dashboard/medewerker.php">Dashboard</a></li>
+        <?php else: ?>
+            <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
     </ul>
 </nav>
 
@@ -28,47 +40,42 @@
 
     <div class="prijs-blokken">
 
-    <!-- Blok 1 -->
-    <div class="blok blok1">
-        <p class="prijs-tekst blok1-tekst">
-            <strong>Bowlen</strong><br><br>
+        <!-- Blok 1 -->
+        <div class="blok blok1">
+            <p class="prijs-tekst blok1-tekst">
+                <strong>Bowlen</strong><br><br>
+                Maandag t/m donderdag: <strong>€24,-</strong> per uur<br>
+                Vrijdag t/m zondag: <strong>€28,-</strong> per uur<br>
+                Na 18:00: <strong>€33,50,-</strong> per uur
+            </p>
+        </div>
 
-            Maandag t/m donderdag: <strong>€24,-</strong> per uur<br>
-            Vrijdag t/m zondag: <strong>€28,-</strong> per uur<br>
-            Na 18:00: <strong>€33,50,-</strong> per uur
-        </p>
+        <!-- Blok 2 -->
+        <div class="blok blok2">
+            <p class="prijs-tekst blok2-tekst">
+                <strong>Magic Bowlen</strong><br><br>
+                Elke vrijdag t/m zondag<br>
+                Vanaf <strong>18:00</strong> t/m <strong>24:00</strong>
+            </p>
+        </div>
+
+        <!-- Blok 3 -->
+        <div class="blok blok3">
+            <p class="prijs-tekst blok3-tekst">
+                <strong>Snackpakketten</strong><br><br>
+                <strong>Basis Pakket €32,-</strong><br>
+                • Friet met saus naar keuze<br>
+                • 1 Snack (Frikandel / Kipcorn)<br>
+                • Fris naar keuze<br><br>
+                <strong>Luxe Pakket €84,-</strong><br>
+                • Friet met saus naar keuze<br>
+                • 2 Snacks (Frikandel / Kipcorn)<br>
+                • Fris naar keuze<br>
+                • Chips naar keuze
+            </p>
+        </div>
+
     </div>
-
-    <!-- Blok 2 -->
-    <div class="blok blok2">
-        <p class="prijs-tekst blok2-tekst">
-            <strong>Magic Bowlen</strong><br><br>
-
-            Elke vrijdag t/m zondag<br>
-            Vanaf <strong>18:00</strong> t/m <strong>24:00</strong>
-        </p>
-    </div>
-
-    <!-- Blok 3 -->
-    <div class="blok blok3">
-        <p class="prijs-tekst blok3-tekst">
-            <strong>Snackpakketten</strong><br><br>
-
-            <strong>Basis Pakket €32,-</strong><br>
-            • Friet met saus naar keuze<br>
-            • 1 Snack (Frikandel / Kipcorn)<br>
-            • Fris naar keuze<br><br>
-
-            <strong>Luxe Pakket €84,-</strong><br>
-            • Friet met saus naar keuze<br>
-            • 2 Snacks (Frikandel / Kipcorn)<br>
-            • Fris naar keuze<br>
-            • Chips naar keuze
-        </p>
-    </div>
-
-</div>
-
 </section>
 
 <footer class="footer-contact">
@@ -99,7 +106,9 @@
 <script>
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+menuBtn.addEventListener('click', () => { 
+    mobileMenu.classList.toggle('open'); 
+});
 </script>
 
 </body>

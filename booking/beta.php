@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 date_default_timezone_set('Europe/Amsterdam');
 
+$current_page = basename($_SERVER['PHP_SELF']);
+
 // Tijdslots (basis lijst)
 $timeSlots = [
   "14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","00:00"
@@ -146,6 +148,36 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bowling Center Brooklyn</title>
 
+<!-- Hamburger knop -->
+<button class="menu-btn" id="menuBtn" aria-label="Open menu">
+    &#9776; <!-- de klassieke hamburger -->
+</button>
+
+<!-- Mobile menu -->
+<nav class="mobile-menu" id="mobile-menu">
+    <ul>
+        <li><a href="../index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Home</a></li>
+        <li><a href="../over_ons.php" class="<?= ($current_page == 'over_ons.php') ? 'active' : '' ?>">Over ons</a></li>
+        <li><a href="beta.php" class="<?= ($current_page == 'beta.php') ? 'active' : '' ?>">Agenda</a></li>
+        <li><a href="../prijzen.php" class="<?= ($current_page == 'prijzen.php') ? 'active' : '' ?>">Prijzen</a></li>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            <li><a href="../login.php" class="<?= ($current_page == 'login.php') ? 'active' : '' ?>">Login</a></li>
+        <?php elseif (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'medewerker' || $_SESSION['user_role'] === 'owner')): ?>
+            <li><a href="../dashboard/medewerker.php">Dashboard</a></li>
+        <?php else: ?>
+            <li><a href="../logout.php">Logout</a></li>
+        <?php endif; ?>
+    </ul>
+</nav>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobile-menu');
+menuBtn.addEventListener('click', () => { 
+    mobileMenu.classList.toggle('open'); 
+});
+</script>
+
   <style>
     .booking-page{ padding:80px 16px; background:#000; position:relative; }
     .booking-page::before{
@@ -254,8 +286,125 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
   background: #0b0b14 !important;
 }
 
-  </style>
+<style>
+    /* ===== JOUW BOWLING RESERVERING CSS (zoals gegeven) ===== */
+    .booking-page{ padding:80px 16px; background:#000; position:relative; }
+    .booking-page::before{
+      content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(700px 380px at 20% 20%, rgba(255,47,220,.18), transparent 60%),
+        radial-gradient(680px 360px at 80% 30%, rgba(140,60,255,.14), transparent 60%),
+        radial-gradient(800px 420px at 50% 100%, rgba(255,47,220,.10), transparent 65%);
+      pointer-events:none;
+    }
+    .booking-page .container{ max-width:1000px; margin:0 auto; position:relative; }
+    .booking-card{
+      background: rgba(20, 20, 40, 0.60);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 10px 40px rgba(0,0,0,.65);
+      border-radius: 18px;
+      padding: 22px;
+    }
+    /* ... (alle overige CSS van je reserveringsform) ... */
 
+    /* ===== MOBILE MENU (slide-in) ===== */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -260px;
+        width: 260px;
+        height: 100%;
+        background: rgba(20,20,40,0.65);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+        transition: right 0.35s ease;
+        z-index: 9998;
+        font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    .mobile-menu a.active {
+        color: #ff2fdc;
+        transform: scale(1.05);
+    }
+
+    .mobile-menu a {
+        display: inline-block;
+    }
+
+    .mobile-menu.open { 
+        right: 0; 
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        padding: 100px 0 0;
+        text-align: center;
+    }
+
+    .mobile-menu li { 
+        margin: 30px 0; 
+    }
+
+    .mobile-menu a {
+        text-decoration: none;
+        color: rgba(255,255,255,0.95);
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-shadow: 0 0 12px rgba(255,47,220,0.4);
+        transition: color 0.3s, transform 0.3s;
+    }
+
+    /* Hover-stijl */
+.mobile-menu a:hover {
+    color: #ff2fdc;
+    transform: scale(1.05);
+}
+
+/* Actieve pagina krijgt dezelfde stijl als hover */
+.mobile-menu a.active {
+    color: #ff2fdc;
+    transform: scale(1.05);
+
+    }
+
+    /* ===== DESKTOP MENU FIX ===== */
+    @media (min-width: 1024px) {
+        .menu-btn { display: none; }
+
+        .mobile-menu {
+            display: flex;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: auto;
+            height: auto;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(8px) brightness(0.7);
+            padding: 12px 40px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            flex-direction: row;
+            gap: 50px;
+            z-index: 9999;
+            transition: none;
+        }
+
+        .mobile-menu.open { right: 20px; }
+
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu li { margin: 0; }
+        .mobile-menu a { font-size: 30px; color: rgba(255,255,255,0.95); }
+    }
+</style>
 
 </head>
 

@@ -7,6 +7,9 @@
         session_unset();
         session_destroy();
     }
+
+    // Huidige pagina bepalen voor actieve link
+    $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <head>
     <meta charset="UTF-8">
@@ -34,22 +37,19 @@
 <!-- Mobile menu -->
 <nav class="mobile-menu" id="mobile-menu">
     <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="over_ons.php">Over ons</a></li>
-        <li><a href="booking/beta.php">Agenda</a></li>
-        <li><a href="prijzen.php">Prijzen</a></li>
-    <?php if (!isset($_SESSION['user_id'])): ?>
-        <li><a href="login.php">Login</a></li>
-    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'medewerker'): ?>
-        <li><a href="dashboard/medewerker.php">Dashboard</a></li>
-    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'owner'): ?>
-        <li><a href="dashboard/medewerker.php">Dashboard</a></li>
-    <?php else: ?>
-        <li><a href="logout.php">Logout</a></li>
-    <?php endif; ?>
+        <li><a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Home</a></li>
+        <li><a href="over_ons.php" class="<?= ($current_page == 'over_ons.php') ? 'active' : '' ?>">Over ons</a></li>
+        <li><a href="booking/beta.php" class="<?= ($current_page == 'beta.php') ? 'active' : '' ?>">Agenda</a></li>
+        <li><a href="prijzen.php" class="<?= ($current_page == 'prijzen.php') ? 'active' : '' ?>">Prijzen</a></li>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            <li><a href="login.php" class="<?= ($current_page == 'login.php') ? 'active' : '' ?>">Login</a></li>
+        <?php elseif (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'medewerker' || $_SESSION['user_role'] === 'owner')): ?>
+            <li><a href="dashboard/medewerker.php">Dashboard</a></li>
+        <?php else: ?>
+            <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
     </ul>
 </nav>
-
 
 <!-- Hero sectie -->
 <section class="hero">
@@ -59,7 +59,7 @@
         </div>
         <h1>Bowling Center Brooklyn</h1>
         <p class="hero-subtitle">Waar plezier altijd scoort</p>
-        <a href="#" class="btn">Reserveer nu</a>
+        <a href="booking/beta.php" class="btn">Reserveer nu</a>
     </div>
 </section>
 
@@ -113,7 +113,9 @@
 <script>
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+menuBtn.addEventListener('click', () => { 
+    mobileMenu.classList.toggle('open'); 
+});
 </script>
 
 </body>
