@@ -1,4 +1,7 @@
 <?php
+
+require_once "../db.php"; // db connectie voor dubbele booking check
+
 // reserveer.php (PHP 7.3 compatible)
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -138,6 +141,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
   exit;
 }
 
+// Dubbele Booking logica!
+
+$sql = "SELECT timeslot_start, timeslot_end,  FROM"
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -147,6 +153,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
   <title>Bowling Center Brooklyn</title>
 
   <style>
+    body { 
+      margin: 0; /*this fixes the white padding outside the booking page*/
+    }
     .booking-page{ padding:80px 16px; background:#000; position:relative; }
     .booking-page::before{
       content:""; position:absolute; inset:0;
@@ -156,7 +165,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
         radial-gradient(800px 420px at 50% 100%, rgba(255,47,220,.10), transparent 65%);
       pointer-events:none;
     }
-    .booking-page .container{ max-width:1000px; margin:0 auto; position:relative; }
+    .booking-page .container{ max-width:1200px; margin:0 auto; position:relative; }
     .booking-card{
       background: rgba(20, 20, 40, 0.60);
       backdrop-filter: blur(12px);
@@ -255,8 +264,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
 }
 
   </style>
-
-
 </head>
 
 <body>
