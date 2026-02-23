@@ -143,7 +143,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'submit') {
 
 // Dubbele Booking logica!
 
-$sql = "SELECT timeslot_start, timeslot_end,  FROM"
+$sql = "SELECT timeslot_start, timeslot_end,  FROM";
 ?>
 <!DOCTYPE html>
 <html lang="nl">
