@@ -13,12 +13,11 @@ body, html {
 }
 
 /* ===== HEADER & HAMBURGER ===== */
-/* ===== HEADER & MENU ===== */
 .header {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 50;
+    z-index: 9999;
 }
 
 /* Hamburger button */
@@ -29,7 +28,7 @@ body, html {
     color: #fff;
     cursor: pointer;
     transition: transform 0.2s, color 0.2s;
-    z-index: 51;
+    z-index: 10000;
 }
 
 .menu-btn:hover {
@@ -37,7 +36,7 @@ body, html {
     color: #ff2fdc;
 }
 
-/* Mobile menu (slide-in) */
+/* ===== MOBILE MENU (slide-in) ===== */
 .mobile-menu {
     position: fixed;
     top: 0;
@@ -48,10 +47,22 @@ body, html {
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.6);
     transition: right 0.35s ease;
-    z-index: 49;
+    z-index: 9998;
 }
 
-.mobile-menu.open { right: 0; }
+/* Actieve pagina blijft hover-stijl houden */
+.mobile-menu a.active {
+    color: #ff2fdc;
+    transform: scale(1.05);
+}
+
+.mobile-menu a {
+    display: inline-block;
+}
+
+.mobile-menu.open { 
+    right: 0; 
+}
 
 .mobile-menu ul {
     list-style: none;
@@ -59,7 +70,9 @@ body, html {
     text-align: center;
 }
 
-.mobile-menu li { margin: 30px 0; }
+.mobile-menu li { 
+    margin: 30px 0; 
+}
 
 .mobile-menu a {
     text-decoration: none;
@@ -78,10 +91,16 @@ body, html {
 
 /* ===== DESKTOP MENU FIX ===== */
 @media (min-width: 1024px) {
-    /* Toon mobiel menu rechtsboven als desktop menu */
+
+    /* Hamburger knop verbergen op desktop */
+    .menu-btn {
+        display: none;
+    }
+
+    /* Menu wordt een vaste topbar rechtsboven */
     .mobile-menu {
         display: flex;
-        position: absolute;
+        position: fixed;   /* <-- BELANGRIJK */
         top: 20px;
         right: 20px;
         width: auto;
@@ -93,11 +112,15 @@ body, html {
         box-shadow: 0 0 20px rgba(0,0,0,0.2);
         flex-direction: row;
         gap: 50px;
-        z-index: 50;
+        z-index: 9999;
         transition: none;
     }
 
-    .mobile-menu::before { display: none; }
+    /* Zorg dat hij niet off-screen staat op desktop */
+    .mobile-menu.open {
+        right: 20px;
+    }
+
     .mobile-menu ul {
         display: flex;
         flex-direction: row;
@@ -105,10 +128,16 @@ body, html {
         padding: 0;
         margin: 0;
     }
-    .mobile-menu li { margin: 0; }
-    .mobile-menu a { font-size: 30px; color: rgba(255,255,255,0.95); }
-}
 
+    .mobile-menu li { 
+        margin: 0; 
+    }
+
+    .mobile-menu a { 
+        font-size: 30px; 
+        color: rgba(255,255,255,0.95); 
+    }
+}
 
 /* ===== HERO (HOME) ===== */
 .hero {
@@ -146,7 +175,9 @@ body, html {
     box-shadow: 0 0 25px rgba(255,47,220,0.6), inset 0 0 20px rgba(255,255,255,0.1);
 }
 
-.logo-circle img { width: 85%; }
+.logo-circle img { 
+    width: 85%; 
+}
 
 .hero-content h1 {
     font-size: 30px;
@@ -192,7 +223,7 @@ body, html {
     display: block;
     padding: 60px 20px;
     text-align: center;
-    background-color: rgba(50, 50, 100, 0.289); /* nieuwe kleur */
+    background-color: rgba(50, 50, 100, 0.289);
 }
 
 .desktop-container {
@@ -233,8 +264,17 @@ body, html {
     color: #fff;
 }
 
-.card-text h3 { font-size: 24px; margin-bottom: 10px; text-shadow: 0 0 8px rgba(255,47,220,0.4); }
-.card-text p { font-size: 16px; opacity: 0.85; line-height: 1.4; }
+.card-text h3 { 
+    font-size: 24px; 
+    margin-bottom: 10px; 
+    text-shadow: 0 0 8px rgba(255,47,220,0.4); 
+}
+
+.card-text p { 
+    font-size: 16px; 
+    opacity: 0.85; 
+    line-height: 1.4; 
+}
 
 /* ===== OVER ONS BANNERS ===== */
 .banner_one {
@@ -284,7 +324,7 @@ body, html {
 
 .hero-image-text .text-block {
     flex: 1 1 300px;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.6;
     color: #fff;
 }
@@ -295,7 +335,6 @@ body, html {
         padding: 25px;
     }
 }
-
 
 /* ===== PRIJZEN ===== */
 .prijzen-hero {
@@ -308,21 +347,15 @@ body, html {
     background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.9)), url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
 }
 
-.prijzen-title { font-size: 36px; margin-bottom: 10px; }
-.prijzen-subtitle { font-size: 16px; margin-bottom: 35px; }
-
-.prijzen-hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 120px 20px 40px;
-    text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.9)), url("afbeeldingen/bowling baan img.jpg") center/cover no-repeat;
+.prijzen-title { 
+    font-size: 36px; 
+    margin-bottom: 10px; 
 }
 
-.prijzen-title { font-size: 36px; margin-bottom: 10px; }
-.prijzen-subtitle { font-size: 16px; margin-bottom: 35px; }
+.prijzen-subtitle { 
+    font-size: 16px; 
+    margin-bottom: 35px; 
+}
 
 .prijs-blokken {
     display: flex;
@@ -376,8 +409,8 @@ body, html {
     background: rgba(200,180,255,0.15);
     padding: 30px 40px;
     border-radius: 25px;
-    gap: 40px;
-    max-width: 1200px;
+    gap: 20px;
+    max-width: 1500px;
     width: 100%;
 }
 
@@ -390,7 +423,7 @@ body, html {
 }
 
 .footer-middle, .footer-right {
-    font-size: 17px;
+    font-size: 20px;
     line-height: 1.8;
 }
 
@@ -414,25 +447,40 @@ body, html {
     }
 
     .blok {
-        flex: 1 0 300px;  /* breedte vast */
+        flex: 1 0 300px;
         max-width: 300px;
         padding: 40px;
-        /* achtergrond blijft hetzelfde */
     }
 }
 
-
 @media (max-width: 1023px) {
-    .footer-bar { flex-direction: column; align-items: center; gap: 20px; padding: 30px 20px; }
-    .footer-right { text-align: center; max-width: 100%; }
-    .hero-image-text, .hero-image-text.reverse { flex-direction: column; text-align: center; }
-    .hero-image-text img { width: 80%; }
+    .footer-bar { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
+        padding: 30px 20px; 
+    }
+
+    .footer-right { 
+        text-align: center; 
+        max-width: 100%; 
+    }
+
+    .hero-image-text, 
+    .hero-image-text.reverse { 
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .hero-image-text img { 
+        width: 80%; 
+    }
 }
 
 /* Main container voor Over Ons pagina */
 .over-ons-main {
     position: relative;
-    min-height: 100vh; /* vult minstens schermhoogte */
+    min-height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -445,9 +493,9 @@ body, html {
 .over-ons-main::before {
     content: "";
     position: absolute;
-    inset: 0; /* vult de hele container */
+    inset: 0;
     background: url("afbeeldingen/bowling\ baan\ img.jpg") center top / cover no-repeat;
-    filter: brightness(0.5); /* dim effect alleen op de afbeelding */
+    filter: brightness(0.5);
     z-index: 0;
 }
 
@@ -455,7 +503,7 @@ body, html {
 .banner_text,
 .hero-images-vertical {
     position: relative;
-    z-index: 1; /* boven de dim */
+    z-index: 1;
     color: #fff;
 }
 
@@ -466,6 +514,19 @@ body, html {
     }
 
     .blok{
-        width: 320px; /* <-- web grootte */
+        width: 320px;
     }
+}
+
+/* ===== ACTIVE LINK EFFECT ===== */
+.mobile-menu a.active {
+    color: #ff2fdc;        /* dezelfde kleur als hover */
+    transform: scale(1.05); /* licht oplichten zoals bij hover */
+    text-shadow: 0 0 15px rgba(255,47,220,0.6);
+}
+
+/* Eventueel animatie voor smooth effect */
+.mobile-menu a.active,
+.mobile-menu a:hover {
+    transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
 }

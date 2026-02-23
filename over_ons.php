@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
+<?php
+    session_start();
+
+    // Huidige pagina bepalen voor actieve link
+    $current_page = basename($_SERVER['PHP_SELF']);
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +22,17 @@
 <!-- Slide-out menu -->
 <nav class="mobile-menu" id="mobile-menu">
     <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="over_ons.php">Over ons</a></li>
-        <li><a href="booking/beta.php">Agenda</a></li>
-        <li><a href="prijzen.php">Prijzen</a></li>
-        <li><a href="login.php">Login</a></li>
+        <li><a href="index.php" class="<?= ($current_page == 'index.php') ? 'active' : '' ?>">Home</a></li>
+        <li><a href="over_ons.php" class="<?= ($current_page == 'over_ons.php') ? 'active' : '' ?>">Over ons</a></li>
+        <li><a href="booking/beta.php" class="<?= ($current_page == 'beta.php') ? 'active' : '' ?>">Agenda</a></li>
+        <li><a href="prijzen.php" class="<?= ($current_page == 'prijzen.php') ? 'active' : '' ?>">Prijzen</a></li>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            <li><a href="login.php" class="<?= ($current_page == 'login.php') ? 'active' : '' ?>">Login</a></li>
+        <?php elseif (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'medewerker' || $_SESSION['user_role'] === 'owner')): ?>
+            <li><a href="dashboard/medewerker.php">Dashboard</a></li>
+        <?php else: ?>
+            <li><a href="logout.php">Logout</a></li>
+        <?php endif; ?>
     </ul>
 </nav>
 
@@ -46,10 +58,10 @@
             <div class="text-block">
                 <h3>Onze gezellige bar</h3>
                 <p>
-                        Onze bar is het gezellige ontmoetingspunt van de bowlingbaan, waar jong en oud samen kunnen genieten. Of je nu even pauzeert tijdens het bowlen, wacht op je beurt of gezellig wilt napraten, bij onze bar voel je je meteen thuis.
-                        We bieden een ruime keuze aan frisdranken, warme dranken en lekkere snacks voor het hele gezin. Voor kinderen zijn er leuke drankjes en tussendoortjes, terwijl ouders kunnen ontspannen met een kop koffie of thee.
-                        Dankzij de warme sfeer, comfortabele zitplaatsen en het uitzicht op de bowlingbanen is onze bar de perfecte plek om samen te komen. Het is een fijne omgeving waar gezinnen, vrienden en groepen zich welkom voelen.
-                        Onze bar staat voor gezelligheid, ontspanning en gastvrijheid – een plek waar iedereen kan genieten, met of zonder een potje bowlen.
+                    Onze bar is het gezellige ontmoetingspunt van de bowlingbaan, waar jong en oud samen kunnen genieten. Of je nu even pauzeert tijdens het bowlen, wacht op je beurt of gezellig wilt napraten, bij onze bar voel je je meteen thuis.
+                    We bieden een ruime keuze aan frisdranken, warme dranken en lekkere snacks voor het hele gezin. Voor kinderen zijn er leuke drankjes en tussendoortjes, terwijl ouders kunnen ontspannen met een kop koffie of thee.
+                    Dankzij de warme sfeer, comfortabele zitplaatsen en het uitzicht op de bowlingbanen is onze bar de perfecte plek om samen te komen. Het is een fijne omgeving waar gezinnen, vrienden en groepen zich welkom voelen.
+                    Onze bar staat voor gezelligheid, ontspanning en gastvrijheid – een plek waar iedereen kan genieten, met of zonder een potje bowlen.
                 </p>
             </div>
         </div>
@@ -61,7 +73,7 @@
                 <p>
                     Welkom bij Bowlingcenter Brooklyn, het gezelligste bowlingcenter voor het hele gezin! Bij ons draait alles om samen plezier maken. Of je nu komt met je kinderen, familie, vrienden of opa en oma: iedereen is welkom om te genieten van een ontspannen en leuke bowlingervaring.
                     Ons bowlingcenter beschikt over 8 moderne bowlingbanen, speciaal ingericht voor zowel jong als oud. Dankzij kindvriendelijke voorzieningen zoals bumpers, lichte ballen en een veilige omgeving kunnen ook de jongste bowlers volop meedoen. Voor ouders en begeleiders is er een comfortabele zitplek met goed zicht op de banen.
-                    aast bowlen kun je bij ons terecht voor een hapje en een drankje. Bowlingcenter Brooklyn is dé ideale locatie voor kinderfeestjes, familie-uitjes, verjaardagen en gezellige middagen of avonden samen. Wij zorgen voor een warme sfeer, persoonlijke aandacht en vooral veel plezier.
+                    Naast bowlen kun je bij ons terecht voor een hapje en een drankje. Bowlingcenter Brooklyn is dé ideale locatie voor kinderfeestjes, familie-uitjes, verjaardagen en gezellige middagen of avonden samen. Wij zorgen voor een warme sfeer, persoonlijke aandacht en vooral veel plezier.
                 </p>
             </div>
         </div>
