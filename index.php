@@ -8,7 +8,6 @@
         session_destroy();
     }
 
-    // Huidige pagina bepalen voor actieve link
     $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <head>
@@ -41,12 +40,34 @@
         <li><a href="over_ons.php" class="<?= ($current_page == 'over_ons.php') ? 'active' : '' ?>">Over ons</a></li>
         <li><a href="booking/beta.php" class="<?= ($current_page == 'beta.php') ? 'active' : '' ?>">Agenda</a></li>
         <li><a href="prijzen.php" class="<?= ($current_page == 'prijzen.php') ? 'active' : '' ?>">Prijzen</a></li>
+
         <?php if (!isset($_SESSION['user_id'])): ?>
-            <li><a href="login.php" class="<?= ($current_page == 'login.php') ? 'active' : '' ?>">Login</a></li>
-        <?php elseif (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'medewerker' || $_SESSION['user_role'] === 'owner')): ?>
-            <li><a href="dashboard/medewerker.php">Dashboard</a></li>
+            <!-- Niet ingelogd -->
+            <li>
+                <a href="login.php" class="<?= ($current_page == 'login.php') ? 'active' : '' ?>">
+                    Login
+                </a>
+            </li>
+
         <?php else: ?>
-            <li><a href="logout.php">Logout</a></li>
+            <!-- Wel ingelogd -->
+
+            <?php if ($_SESSION['user_role'] === 'user'): ?>
+                <li>
+                    <a href="reservatiezien.php" 
+                       class="<?= ($current_page == 'reservatiezien.php') ? 'active' : '' ?>">
+                        Dashboard
+                    </a>
+                </li>
+
+            <?php elseif ($_SESSION['user_role'] === 'medewerker' || $_SESSION['user_role'] === 'owner'): ?>
+                <li>
+                    <a href="dashboard/medewerker.php">
+                        Dashboard
+                    </a>
+                </li>
+            <?php endif; ?>
+
         <?php endif; ?>
     </ul>
 </nav>
@@ -87,7 +108,9 @@
 <!-- Footer -->
 <footer class="footer-contact">
     <div class="footer-bar">
-        <div class="footer-logo"><img src="afbeeldingen/bowling_logo.png" alt="Logo"></div>
+        <div class="footer-logo">
+            <img src="afbeeldingen/bowling_logo.png" alt="Logo">
+        </div>
         <div class="footer-middle">
             <p>
                 <strong>Bowling Center Brooklyn</strong><br>
