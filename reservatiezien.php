@@ -49,11 +49,13 @@ if ($result->num_rows > 0) {
 
         <nav class="top-nav">
           <ul>
+            <li><a href="index.php">Home</a></li>
             <li><a href="index.php">Overzicht</a></li>
             <li><a href="over_ons.php">Reservering</a></li>
             <li><a href="../overzicht_gebruiker.php">Gebruikers</a></li>
           </ul>
         </nav>
+        
       </div>
       <!-- Reservations -->
       <div class="calendar-background">
