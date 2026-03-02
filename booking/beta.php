@@ -177,14 +177,76 @@ $vrijgezellenfeest = isset($src['vrijgezellenfeest']) ? (string) $src['vrijgezel
 if (!in_array($vrijgezellenfeest, ['nee', 'ja'], true))
   $vrijgezellenfeest = 'nee';
 
-// Flow richting confirmatie pagina
 if (isset($_GET['action']) && $_GET['action'] === 'submit') {
-  $queryString = $_SERVER['QUERY_STRING'];
-  header("Location: confirm.php?$queryString");
-  exit;
-}
+    $day = (int) ($_GET['day'] ?? 0);
+    $month = (int) ($_GET['m'] ?? date('n'));
+    $year = (int) ($_GET['y'] ?? date('Y'));
+    $start_time = trim($_GET['start_time'] ?? '');
+    $end_time = trim($_GET['end_time'] ?? '');
+    $lanes = $_GET['lanes'] ?? [];
 
-// Dubbele Booking logica!
+    // 🔥 PAD TIJDEN NAAR MYSQL FORMaat
+    $start_time = substr($start_time, 0, 5) . ':00';
+    $end_time = substr($end_time, 0, 5) . ':00';
+
+    if ($day < 1 || strlen($start_time) < 8 || strlen($end_time) < 8 || empty($lanes)) {
+        echo "<p style='color:orange;'>check invoer.</p>";
+    } else {
+        $reservationDate = sprintf('%04d-%02d-%02d', $year, $month, $day);
+        $laneIds = array_values(array_unique(array_filter(array_map('intval', $lanes))));
+
+        $placeholders = implode(',', array_fill(0, count($laneIds), '?'));
+        $sql = "
+            SELECT r.id, r.timeslot_start, r.timeslot_end, GROUP_CONCAT(rl.lane_id) as conflicting_lanes
+            FROM reservations r
+            JOIN reservations_lane rl ON rl.reservation_id = r.id
+            WHERE r.reservation_date = ?
+              AND rl.lane_id IN ($placeholders)
+              AND r.timeslot_start < ?
+              AND r.timeslot_end > ?
+            GROUP BY r.id
+            LIMIT 5
+        ";
+
+        $stmt = $conn->prepare($sql);
+        $types = 's' . str_repeat('i', count($laneIds)) . 'ss';
+        $params = array_merge([$reservationDate], $laneIds, [$end_time, $start_time]);
+
+        $bindParams = [$types];
+        foreach ($params as $k => $v) {
+            $bindParams[] = &$params[$k];
+        }
+        call_user_func_array([$stmt, 'bind_param'], $bindParams);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $conflicts = [];
+        while ($row = $result->fetch_assoc()) {
+            $conflicts[] = $row;
+        }
+        $stmt->close();
+
+      if (!empty($conflicts)) {
+          echo "<div class='booking-alert error'>";
+          echo "<h3>Baan bezet!</h3>";
+          echo "<p>deze banen zijn al bezet:</p>";
+          foreach ($conflicts as $c) {
+              echo "<div class='conflict-item'>";
+              echo "booking #{$c['id']}: {$c['timeslot_start']}–{$c['timeslot_end']} (banen: {$c['conflicting_lanes']})";
+              echo "</div>";
+          }
+          echo "</div>";
+      } else {
+          echo "<div class='booking-alert success'>";
+          echo "Success!";
+          echo "</div>";
+          echo "<script>setTimeout(function(){ 
+              window.location.href = 'confirm.php?" . http_build_query($_GET) . "'; 
+          }, 1000);</script>";
+      }
+    }
+}
 
 $sql = "SELECT timeslot_start, timeslot_end,  FROM";
 ?>
@@ -502,7 +564,7 @@ $sql = "SELECT timeslot_start, timeslot_end,  FROM";
     }
 
     .btn booking-btn {
-      color: black !imporant;
+      color: black !important;
 
     }
 
@@ -651,6 +713,33 @@ $sql = "SELECT timeslot_start, timeslot_end,  FROM";
         color: rgba(255, 255, 255, 0.95);
       }
     }
+
+.booking-alert {
+  padding: 24px;
+  margin: 24px 0;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.booking-alert.error {
+  background: #ff4444;
+  color: white;
+}
+
+.booking-alert.success {
+  background: #44ff44;
+  color: black;
+}
+
+.conflict-item {
+  margin: 10px 0;
+  padding: 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+}
+
+
   </style>
 </head>
 
