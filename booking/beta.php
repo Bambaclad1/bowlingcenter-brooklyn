@@ -2,7 +2,7 @@
 
 require_once "../db.php"; // db connectie voor dubbele booking check
 
-// reserveer.php (PHP 7.3 compatible)
+// reserveer.php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
