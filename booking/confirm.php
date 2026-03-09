@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_SESSION['user_id'])) {
 
             $user_id = $_SESSION['user_id'];
-
         } else {
 
             // Check if email already exists
@@ -68,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $message = "<p style='color:red;'>Deze email is al geregistreerd! Log eerst in.</p>";
                 $stmt_check->close();
                 return;
-
             } else {
 
                 // Create new user
@@ -115,9 +113,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt_res->bind_param(
             "isssiiiidddis",
-            $user_id, $reservation_date, $start_time, $end_time,
-            $adults, $children, $snackbox_basic, $snackbox_luxury,
-            $subtotal, $vat, $total_amount, $is_paid, $created_at_res
+            $user_id,
+            $reservation_date,
+            $start_time,
+            $end_time,
+            $adults,
+            $children,
+            $snackbox_basic,
+            $snackbox_luxury,
+            $subtotal,
+            $vat,
+            $total_amount,
+            $is_paid,
+            $created_at_res
         );
 
         if ($stmt_res->execute()) {
@@ -156,6 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,52 +173,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-<div class="booking-page">
-    <div class="container">
+    <div class="booking-page">
+        <div class="container">
 
-        <div class="booking-card confirm-part-one">
-            <h1>Reservatie Bevestiging Overzicht</h1>
-            <p>Datum: <span class="highlight"><?= "$day-$m-$y" ?></span></p>
-            <p>Tijd: <span class="highlight"><?= "Van: $start_time tot $end_time"?></span></p>
-            <p>Volwassenen: <span class="highlight"><?= $persons ?></span></p>
-            <p>Kinderen: <span class="highlight"><?= $children ?></span></p>
-            <p>Banen: <span class="highlight"><?= implode(', ', $banenNaarString)?></span></p>
-            <p>Snackpakket: <span class="highlight"><?= $snackpakket ?></span></p>
-            <?php if ($kinderpartij === 'ja'): ?>
-                <p class="highlight">Kinderfeestje is aangetikt!</p>
-            <?php endif; ?>
-            <?php if ($vrijgezellenfeest === 'ja'): ?>
-                <p class="highlight">Vrijgezellenfeest is aangetikt!</p>
-            <?php endif; ?>
+            <div class="booking-card confirm-part-one">
+                <h1>Reservatie Bevestiging Overzicht</h1>
+                <p>Datum: <span class="highlight"><?= "$day-$m-$y" ?></span></p>
+                <p>Tijd: <span class="highlight"><?= "Van: $start_time tot $end_time" ?></span></p>
+                <p>Volwassenen: <span class="highlight"><?= $persons ?></span></p>
+                <p>Kinderen: <span class="highlight"><?= $children ?></span></p>
+                <p>Banen: <span class="highlight"><?= implode(', ', $banenNaarString) ?></span></p>
+                <p>Snackpakket: <span class="highlight"><?= $snackpakket ?></span></p>
+                <?php if ($kinderpartij === 'ja'): ?>
+                    <p class="highlight">Kinderfeestje is aangetikt!</p>
+                <?php endif; ?>
+                <?php if ($vrijgezellenfeest === 'ja'): ?>
+                    <p class="highlight">Vrijgezellenfeest is aangetikt!</p>
+                <?php endif; ?>
 
-            <form method="POST">
-                <p>Ziet dit er goed uit?</p>
-                <div style="display:flex; gap:16px;">
-                    <button type="submit" name="confirm" value="ja">Ja</button>
-                    <button type="submit" name="confirm" value="nee">Nee</button>
+                <form method="POST">
+                    <p>Ziet dit er goed uit?</p>
+                    <div style="display:flex; gap:16px;">
+                        <button type="submit" name="confirm" value="ja">Ja</button>
+                        <button type="submit" name="confirm" value="nee">Nee</button>
+                    </div>
+                </form>
+            </div>
+
+            <?php if ($confirmed == true): ?>
+                <div class="booking-card confirm-part-two">
+                    <form method="POST">
+                        <h3>Vul deze informatie in</h3>
+
+                        <input type="text" name="fname" placeholder="Voornaam"
+                            value="<?= $_SESSION['user_name'] ?? '' ?>" required>
+                        <input type="text" name="lname" placeholder="Achternaam"
+                            value="<?= $_SESSION['user_lastname'] ?? '' ?>" required>
+                        <input type="email" name="email" placeholder="Email"
+                            value="<?= $_SESSION['user_email'] ?? '' ?>" required>
+                        <input type="number" name="number" placeholder="Telefoon Nummer"
+                            value="<?= $_SESSION['user_number'] ?? '' ?>" required>
+                        <button type="submit">Reserveren</button>
+                    </form>
                 </div>
-            </form>
+            <?php endif; ?>
+
         </div>
-
-        <?php if ($confirmed == true): ?>
-        <div class="booking-card confirm-part-two">
-            <form method="POST">
-        <h3>Vul deze informatie in</h3>
-
-        <input type="text" name="fname" placeholder="Voornaam" 
-               value="<?= $_SESSION['user_name'] ?? '' ?>" required>
-        <input type="text" name="lname" placeholder="Achternaam"
-               value="<?= $_SESSION['user_lastname'] ?? '' ?>" required>
-        <input type="email" name="email" placeholder="Email" 
-               value="<?= $_SESSION['user_email'] ?? '' ?>" required>
-        <input type="number" name="number" placeholder="Telefoon Nummer" 
-               value="<?= $_SESSION['user_number'] ?? '' ?>" required>
-        <button type="submit">Reserveren</button>
-            </form>
-        </div>
-        <?php endif; ?>
-
     </div>
-</div>
 </body>
+
 </html>

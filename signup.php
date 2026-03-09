@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <?php
 session_start();
-require_once "db.php";
+require_once 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $canLogin = true;
-    $fname = trim($_POST["fname"] ?? "");
-    $lname = trim($_POST["lname"] ?? "");
-    $email = trim($_POST["email"] ?? "");
-    $password = $_POST["password"] ?? "";
-    $password_confirm = $_POST["password_confirm"] ?? "";
+    $fname = trim($_POST['fname'] ?? '');
+    $lname = trim($_POST['lname'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $password_confirm = $_POST['password_confirm'] ?? '';
 
-    if ($fname === "" || $lname === "" || $email === "" || $password === "" || $password_confirm === "") {
+    if ($fname === '' || $lname === '' || $email === '' || $password === '' || $password_confirm === '') {
         echo "<script>alert('Fill in all fields');</script>";
         $canLogin = false;
     }
@@ -23,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ($canLogin) {
-        $fullName = $fname . " " . $lname;
+        $fullName = $fname . ' ' . $lname;
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO `users` (`name`, `email`, `password_hash`, `role`, `created_at`)
@@ -31,18 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $stmt = $conn->prepare($sql);
 
-        $stmt->bind_param("sss", $fullName, $email, $passwordHash);
+        $stmt->bind_param('sss', $fullName, $email, $passwordHash);
         $stmt->execute();
 
         $stmt->close();
         $conn->close();
         echo "<script>alert('You may now login with your credentials.');</script>";
-        header(header: "Location: login.php?signup=success");
+        header(header: 'Location: login.php?signup=success');
         exit;
     } else {
         $conn->close();
     }
-
 }
 ?>
 

@@ -3,8 +3,8 @@
 session_start();
 require_once('C:/xampp/htdocs/bowlingcenter-brooklyn/db.php');
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'user') {
-    header("Location: ../index.php");
-    exit;
+  header("Location: ../index.php");
+  exit;
 }
 $reservation_date = $_GET['reservation_date'] ?? date('Y-m-d');
 
@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
             <li><a href="../overzicht_gebruiker.php">Gebruikers</a></li>
           </ul>
         </nav>
-        
+
       </div>
       <!-- Reservations -->
       <div class="calendar-background">
@@ -69,35 +69,34 @@ if ($result->num_rows > 0) {
             <button type="submit" class="filter-btn">Filter</button>
           </form>'
           <div class="table-wrapper">
-             <table class="excel-table">
-            <thead>
-              <tr>
+            <table class="excel-table">
+              <thead>
+                <tr>
+                  <?php
+                  // Pakt de columns van de reservaties en gooit ze in een tabel
+                  while ($field = $result->fetch_field()) {
+                    echo "<th>{$field->name}</th>";
+                  }
+                  ?>
+                </tr>
+              </thead>
+              <tbody>
                 <?php
-                // Pakt de columns van de reservaties en gooit ze in een tabel
-                while ($field = $result->fetch_field()) {
-                  echo "<th>{$field->name}</th>";
+                // Maakt <td> kopjes aan als er data is, zo niet, else statement runt
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    foreach ($row as $value) {
+                      echo "<td>$value</td>";
+                    }
+                    echo "</tr>";
+                  }
+                } else {
+                  echo "<tr><td colspan='10'><strong>Geen reservaties op deze datum!</strong></td></tr>";
                 }
                 ?>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              // Maakt <td> kopjes aan als er data is, zo niet, else statement runt
-              if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                      echo "<tr>";
-                      foreach ($row as $value) {
-                          echo "<td>$value</td>";
-                      }
-                      echo "</tr>";
-                  }
-
-              } else {
-                  echo "<tr><td colspan='10'><strong>Geen reservaties op deze datum!</strong></td></tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
           </div>
           <p></p>
         </div>
