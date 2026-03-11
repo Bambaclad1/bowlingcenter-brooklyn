@@ -233,7 +233,39 @@ De belangrijkste relaties in de database zijn:
 There are possibly more approaches to set this project up but this is how we got it working.
 
 ##  5. <a name='Features'></a>Features
-De website heeft een reserveringsysteem, met CRUD acties voor het aanpassen van gebruikers, mogelijkeheid om gebruikers aan te maken. Daarnaast kan een gebruiker zowel als medewerker een reservatie zien en wordt er rekening gehouden met afscherming.
+
+1.  Reserveren
+Je kan een reservering maken door op de website naar de reserveringspagina te gaan. Daar kiest de klant een datum, een tijd en een bowlingbaan. Daarna vult de klant zijn gegevens in en kan de reservering worden opgeslagen. Zo kan een klant online een baan reserveren zonder te hoeven bellen. 
+
+2. Beschikbare banen bekijken
+Wanneer een klant wil reserveren, kan hij zien welke banen beschikbaar zijn. Het systeem controleert welke banen al bezet zijn op dat moment. Daardoor kan een klant alleen een vrije baan kiezen en worden dubbele reserveringen zoveel mogelijk voorkomen.
+3. Datum en tijd kiezen
+Bij het maken van een reservering kan de klant zelf een datum en tijd kiezen. Dit maakt het makkelijk om een reservering te plannen op een moment dat het voor de klant uitkomt.
+4. Aantal personen invullen
+Tijdens het reserveren kan de klant aangeven met hoeveel personen hij komt. Op basis daarvan kan het systeem rekening houden met het aantal volwassenen en kinderen en hoeveel banen er nodig zijn.
+5. Inloggen
+Een gebruiker kan inloggen op de website met een e-mailadres en wachtwoord. Als de gegevens kloppen, krijgt de gebruiker toegang tot zijn account of dashboard. Dit maakt het mogelijk om persoonlijke gegevens en reserveringen te bekijken.
+6. Registreren
+Als een klant nog geen account heeft, kan hij zich registreren op de website. Daarbij vult de gebruiker zijn gegevens in, zoals naam, e-mail en wachtwoord. Daarna wordt een account aangemaakt en kan de gebruiker inloggen.
+7. Uitloggen
+Een gebruiker kan ook weer uitloggen van de website. Daardoor wordt de sessie afgesloten en kan niemand anders zomaar in dat account verder werken.
+8. Prijzen bekijken
+Op de website is een pagina aanwezig waar klanten de prijzen van de bowlingbaan kunnen bekijken. Zo weet een klant van tevoren wat een reservering ongeveer kost en op welke tijden er gespeeld kan worden.
+9. Over ons bekijken
+Er is ook een pagina met informatie over het bowlingcentrum. Hier kan een bezoeker meer lezen over het bedrijf en wat de website of bowlingbaan aanbiedt.
+10.  Reserveringen terugzien
+Een klant kan zijn eigen reserveringen terugzien op de website. Hierdoor kan de klant controleren of een reservering goed in het systeem staat en welke datum en tijd gekozen zijn.
+11. Reserveringen bekijken als medewerker
+Een medewerker kan een overzicht zien van de reserveringen die zijn gemaakt.
+12. Gebruikersoverzicht
+De eigenaar of beheerder kan een overzicht van gebruikers bekijken. Zo kan worden gezien welke accounts er in het systeem staan.
+13. Beveiligd inloggen
+De website gebruikt beveiliging bij het inloggen, zoals versleutelde wachtwoorden. Dit zorgt ervoor dat wachtwoorden niet zomaar leesbaar in de database staan.
+14. Databasekoppeling
+De website is gekoppeld aan een database. Hierdoor kunnen gegevens zoals gebruikers en reserveringen worden opgeslagen en later weer worden opgehaald.
+15. Automatische controle op bezetting
+Tijdens het reserveren controleert het systeem of een baan al bezet is. Daardoor kan een klant niet zomaar dezelfde baan op dezelfde tijd reserveren als iemand anders.
+
 
 ##  6. <a name='Techstack'></a>Tech stack
 Voor het project gebruiken we een mix van HTML, CSS, PHP, en JavaScript in combinatie met MySQL voor de database in XAMPP
