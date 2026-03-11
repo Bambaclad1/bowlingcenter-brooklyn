@@ -42,7 +42,7 @@ Daarnaast helpt het systeem om dubbele bookingen aan te maken en verbetert produ
 ```mermaid
 flowchart LR
 
-subgraph Zonder_Digitaal_Systeem
+subgraph Zonder reserveringsysteem en handmatige reserveringen
 A[Klant belt bowlingcenter] --> B[Medewerker schrijft reservering op papier]
 B --> C[Andere klant belt]
 C --> D[Medewerker checkt papieren lijst]
@@ -51,7 +51,7 @@ E --> F[Dubbele boekingen]
 F --> G[Chaos bij balie]
 end
 
-subgraph Met_Bowling_Reserveringssysteem
+subgraph Met reserveringsysteem
 H[Klant opent website] --> I[Selecteert datum en tijd]
 I --> J[Systeem controleert database]
 J --> K{Baan beschikbaar?}
