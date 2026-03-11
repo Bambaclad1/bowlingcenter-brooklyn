@@ -37,12 +37,12 @@
 ##  1. <a name='ProjectUitleg'></a>Project Uitleg
 
 Bowling Center Brooklyn is een web applicatie die gemaakt is om bowling baan reservaties te kunnen beheren. Het systeem zorgt voor minder handmatige boekingen door gebruikers en medewerkers reservaties te kunnen laten maken door een digitale platform.  
-Daarnaast helpt het systeem om dubbele bookingen aan te maken en verbetert productiviteit voor de medewerkers.
+Daarnaast helpt het systeem om geen dubbele bookingen aan te maken en verbetert productiviteit voor de medewerkers.
 
 ```mermaid
 flowchart LR
 
-subgraph Zonder_Digitaal_Systeem
+subgraph Zonder reserveringsysteem en handmatige reserveringen
 A[Klant belt bowlingcenter] --> B[Medewerker schrijft reservering op papier]
 B --> C[Andere klant belt]
 C --> D[Medewerker checkt papieren lijst]
@@ -51,7 +51,7 @@ E --> F[Dubbele boekingen]
 F --> G[Chaos bij balie]
 end
 
-subgraph Met_Bowling_Reserveringssysteem
+subgraph Met reserveringsysteem
 H[Klant opent website] --> I[Selecteert datum en tijd]
 I --> J[Systeem controleert database]
 J --> K{Baan beschikbaar?}
@@ -284,6 +284,18 @@ Het systeem heeft basis security maatregelen zoals het voorkomen van
 ##  9. <a name='KnownIssues'></a>Known Issues
 
 ##  10. <a name='Verbetervoorstellen'></a>Verbetervoorstellen
+
+1. Tijden in footer aanpassen naar daadwerklijke openingstijden.
+2. Banen wijzigen: 1, 2, 3 samenvoegen naar 3 banen.
+3. Bevestigingsmail  toevoegen.
+4. De interface gebruiksvriendelijker maken, met duidelijk aangeven welke banen beschikbaar zijn.
+5. Banen en namen tonen in het medewerkerportaal.
+6. In het gebruikersoverzicht accounts kunnen filteren op rol.
+7. In het gebruikersoverzicht een zoekfunctie voor de eigenaar toevoegen.
+8. Forgot password? een pagina maken om de wachtwoord te kunnen resetten.
+9. Op de inlogscherm een homeknoop maken op de logo dat je gemakkelijk terug kan gaan naar de website.
+10. Mobilie versie bij reseveringen hamburgerbar verbeteren CSS niet correct.
+11. Project map meer overzichterlijker. Documenten die niet van toepassen verwijderen 
 
 ##  11. <a name='Anderelinkjes'></a>Andere linkjes
 ###  11.1. <a name='Documentatie'></a>Documentatie
